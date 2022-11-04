@@ -1,0 +1,27 @@
+.primary__btn {
+    width: 10rem;
+    height: 2.5rem;
+    border-radius: 3px;
+    font-weight: 700;
+    background: getColour(primaryColour);
+    color: getColour(textColourSecondary);
+    border: none;
+    transition: 0.3s;
+
+    &:hover {
+        cursor: pointer;
+        background-color: getColour(btnPrimaryHoverColour);
+        box-shadow: 2px 2px 10px getColour(secondaryColour);
+    }
+}
+
+.secondary__btn {
+    background: getColour(inputColour);
+    color: getColour(textColourPrimary);
+    border: 1px solid getColour(textColourPrimary);
+
+    &:hover {
+        background-color: getColour(btnSecondaryHoverColour);
+        box-shadow: 2px 2px 10px getColour(secondaryColour);
+    }
+}

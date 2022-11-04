@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import './sass/styles.scss';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navigation from "./components/layout/Navigation";
+import { AuthProvider } from "./components/context/AuthContext";
+import Home from "./components/pages/Home";
+import Register from "./components/pages/Register";
+import Login from "./components/pages/Login";
+import About from "./components/pages/About";
+import Contact from "./components/pages/Contact";
+import MyProfile from "./components/pages/MyProfile";
+import PostList from "./components/pages/PostList";
+import ProfileList from "./components/pages/ProfileList";
+import SpecificPost from "./components/pages/SpecificPost";
+import SpecificProfile from "./components/pages/SpecificProfile";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <AuthProvider>
+      <Router>
+        <div>
+          <Navigation />
 
-export default App;
+          <Routes>
+            <Route path="/" exact element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/userprofile/:name" element={<MyProfile />} />
+            <Route path="/postList" element={<PostList />} />
+            <Route path="/profileList" element={<ProfileList />} />
+            <Route path="/post/:id" exact element={<SpecificPost />} />
+            <Route path="/profiles/:name" exact element={<SpecificProfile />} />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
+  );
+};
