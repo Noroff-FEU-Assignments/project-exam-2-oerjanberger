@@ -9,7 +9,7 @@ import { HiHome } from "react-icons/hi";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { FaUsers } from "react-icons/fa";
 
-export default function Navigation({ avatar = "/images/defaultImages/default_avatar_img.jpg" }) {
+export default function Navigation() {
     const [auth, setAuth] = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -28,7 +28,11 @@ export default function Navigation({ avatar = "/images/defaultImages/default_ava
                             <div className="nav__icons__container">
                                 <NavLink to="postList"><HiHome className="nav__icon icon__home" /></NavLink>
                                 <NavLink to="profileList"><FaUsers className="nav__icon icon__profiles" /></NavLink>
-                                <NavLink to="postList"><div className="profile__img__border"><img src={avatar} alt="my profile button" className="nav__icon img__profile" /></div></NavLink>
+                                <NavLink to="postList">
+                                    <div className="avatar__img__border">
+                                        <img src={auth.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : auth.avatar} alt="my profile button" className="nav__icon avatar__img__small" />
+                                    </div>
+                                </NavLink>
                                 <RiLogoutBoxLine onClick={logout} className="nav__icon icon__logoutBtn" />
                             </div>
                         </>

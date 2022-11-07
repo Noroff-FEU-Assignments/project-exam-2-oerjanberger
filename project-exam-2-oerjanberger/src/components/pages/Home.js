@@ -7,7 +7,7 @@ export default function Home() {
     return (
         <>
             <PreAuthBackground image="/images/backgroundImages/IndexPageImage.jpg" />
-            <Container className="main__container" >
+            <Container>
                 <Heading size="1" content="Welcome to us" />
                 <div className="homepage__buttons">
                     <Link to={"/register"}><button className="primary__btn">Register</button></Link>

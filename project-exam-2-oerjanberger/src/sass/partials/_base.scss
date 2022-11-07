@@ -1,10 +1,13 @@
 body {
     font-family: $font-primary;
+    background-color: getColour(backgroundColour);
 }
 
 .container {
     margin: 0 auto;
 }
+
+
 
 a {
     color: getColour(textColourPrimary);

@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "react-bootstrap";
 import axios from "axios";
 import { BASE_URL } from "../../constants/Api";
-import FormError from "./FormError";
+import FormError from "../common/FormError";
 
 let emailRegex = new RegExp("[a-z0-9]+@stud.noroff.no");
 

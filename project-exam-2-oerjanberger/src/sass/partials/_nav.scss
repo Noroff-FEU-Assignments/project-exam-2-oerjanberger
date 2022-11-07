@@ -14,10 +14,18 @@
     width: 30vh;
     display: flex;
     justify-content: space-around;
+
+    .avatar__img__border:hover {
+        box-shadow: 3px 3px 3px getColour(secondaryColour);
+    }
 }
 
 .active {
     color: getColour(primaryColour);
+
+    .avatar__img__border {
+        box-shadow: 3px 3px 3px getColour(primaryColour);
+    }
 }
 
 .icon__logoutBtn:hover {
@@ -27,21 +35,6 @@
 
 .nav__icon {
     font-size: 2rem;
-}
-
-.profile__img__border {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 5px;
-    transform: rotate(25deg);
-    overflow: hidden;
-}
-
-.img__profile {
-    width: 2.5rem;
-    transform: rotate(-25deg);
-    margin-top: -5px;
-    margin-left: -5px;
 }
 
 @media (min-width: 576px) {

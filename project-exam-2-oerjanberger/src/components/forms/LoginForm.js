@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "react-bootstrap";
 import axios from "axios";
 import { BASE_URL } from "../../constants/Api";
-import FormError from "./FormError";
+import FormError from "../common/FormError";
 import AuthContext from "../context/AuthContext";
 
 const schema = yup.object().shape({
@@ -23,7 +23,7 @@ export default function LoginForm() {
         resolver: yupResolver(schema),
     });
 
-    const [auth, setAuth] = useContext(AuthContext);
+    const [, setAuth] = useContext(AuthContext);
 
     async function onSubmit(data) {
 
@@ -32,7 +32,7 @@ export default function LoginForm() {
 
         try {
             const response = await axios.post(loginUrl, data);
-            setAuth(response.data.accessToken)
+            setAuth(response.data)
             navigate("/postList", { replace: true });
         } catch (error) {
             console.log(error);

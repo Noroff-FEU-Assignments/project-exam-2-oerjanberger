@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export default function PreAuthBackground({ image = "/images/backgroundImages/IndexPageImage.jpg" }) {
+export default function PreAuthBackground({ image }) {
     const newImage = image
     return (
         <div className="pre__auth__container home__page" style={{
