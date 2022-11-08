@@ -13,6 +13,8 @@ export default function Navigation() {
     const [auth, setAuth] = useContext(AuthContext);
     const navigate = useNavigate();
 
+    const userProfile = "userProfile/" + auth.name
+
     function logout() {
         setAuth(null);
         navigate("/", { replace: true });
@@ -28,7 +30,7 @@ export default function Navigation() {
                             <div className="nav__icons__container">
                                 <NavLink to="postList"><HiHome className="nav__icon icon__home" /></NavLink>
                                 <NavLink to="profileList"><FaUsers className="nav__icon icon__profiles" /></NavLink>
-                                <NavLink to="postList">
+                                <NavLink to={userProfile}>
                                     <div className="avatar__img__border">
                                         <img src={auth.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : auth.avatar} alt="my profile button" className="nav__icon avatar__img__small" />
                                     </div>
@@ -41,7 +43,7 @@ export default function Navigation() {
                     )}
                 </Nav>
             </Container>
-        </Navbar>
+        </Navbar >
     );
 };
 

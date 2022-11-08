@@ -7,7 +7,7 @@ import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
 import About from "./components/pages/About";
 import Contact from "./components/pages/Contact";
-import MyProfile from "./components/pages/MyProfile";
+import UserProfile from "./components/pages/UserProfile";
 import PostList from "./components/pages/PostList";
 import ProfileList from "./components/pages/ProfileList";
 import SpecificPost from "./components/pages/SpecificPost";
@@ -26,7 +26,7 @@ export default function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/userprofile/:name" element={<MyProfile />} />
+            <Route path="/userProfile/:name" element={<UserProfile />} />
             <Route path="/postList" element={<PostList />} />
             <Route path="/profileList" element={<ProfileList />} />
             <Route path="/post/:id" exact element={<SpecificPost />} />

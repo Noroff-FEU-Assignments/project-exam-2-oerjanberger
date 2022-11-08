@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: $font-primary;
     background-color: getColour(backgroundColour);
@@ -7,7 +11,25 @@ body {
     margin: 0 auto;
 }
 
+.main__container {
+    max-width: 900px;
+}
 
+.posts__container,
+.profiles__container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.number {
+    font-family: $font-logo;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2rem;
+    color: getColour(primaryColour);
+}
 
 a {
     color: getColour(textColourPrimary);

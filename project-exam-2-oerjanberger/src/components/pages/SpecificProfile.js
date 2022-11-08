@@ -4,7 +4,7 @@ import Heading from "../layout/Heading";
 export default function SpecificProfile() {
     return (
         <Container className="main__container specificProfile__page">
-            <Heading size="1" content="SpecificProfile" />
+            <Heading size="1" content="hello user" />
         </Container>
     );
 };

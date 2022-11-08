@@ -3,6 +3,8 @@ import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 
 export default function PostCard({ id, avatar, name, title, created, updated, image, body, reactions, comments }) {
+    const avatarAltText = "This is the avatar image of " + name
+
     return (
         <Card className="postCard">
             <Link to={`/post/${id}`}>
@@ -10,7 +12,7 @@ export default function PostCard({ id, avatar, name, title, created, updated, im
                 <Card.Body>
                     <div className="postCard__profileContainer">
                         <div className="avatar__img__border postCard__avatar__border">
-                            <img src={avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : avatar} className="nav__icon avatar__img__small" alt="" />
+                            <img src={avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : avatar} className="nav__icon avatar__img__small" alt={avatarAltText} />
                         </div>
                         <h3 className="postCard__author">{name}</h3>
                     </div>
@@ -25,11 +27,11 @@ export default function PostCard({ id, avatar, name, title, created, updated, im
                     </div>
                     <div className="postCard__interactionContainer">
                         <div className="postCard__reactionsContainer">
-                            <p className="postCard__numberOfReactions">{reactions}</p>
+                            <p className="number">{reactions}</p>
                             <p>Reactions</p>
                         </div>
                         <div className="postCard__commentsContainer">
-                            <p className="postCard__numberOfComments">{comments}</p>
+                            <p className="number">{comments}</p>
                             <p>Comments</p>
                         </div>
                     </div>
