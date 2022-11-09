@@ -8,6 +8,10 @@
         justify-content: space-between;
         align-items: center;
     }
+
+    .avatar__img__border {
+        cursor: pointer;
+    }
 }
 
 .nav__icons__container {
@@ -22,10 +26,10 @@
 
 .active {
     color: getColour(primaryColour);
+}
 
-    .avatar__img__border {
-        box-shadow: 3px 3px 3px getColour(primaryColour);
-    }
+.activeAvatar {
+    box-shadow: 3px 3px 3px getColour(primaryColour);
 }
 
 .icon__logoutBtn:hover {

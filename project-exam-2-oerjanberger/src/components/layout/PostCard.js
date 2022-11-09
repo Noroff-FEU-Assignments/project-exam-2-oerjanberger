@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
+import Heading from "../layout/Heading";
 
 export default function PostCard({ id, avatar, name, title, created, updated, image, body, reactions, comments }) {
     const avatarAltText = "This is the avatar image of " + name
@@ -8,13 +9,13 @@ export default function PostCard({ id, avatar, name, title, created, updated, im
     return (
         <Card className="postCard">
             <Link to={`/post/${id}`}>
-                <Card.Img variant="top" src={image} alt="" />
+                <Card.Img variant="top" src={image} alt={title} />
                 <Card.Body>
                     <div className="postCard__profileContainer">
                         <div className="avatar__img__border postCard__avatar__border">
                             <img src={avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : avatar} className="nav__icon avatar__img__small" alt={avatarAltText} />
                         </div>
-                        <h3 className="postCard__author">{name}</h3>
+                        <Heading size="3" content={name} className="postCard__author" />
                     </div>
                     <div className="postCard__dateContainer">
                         <p className="postCard__date">Created: {created}</p>

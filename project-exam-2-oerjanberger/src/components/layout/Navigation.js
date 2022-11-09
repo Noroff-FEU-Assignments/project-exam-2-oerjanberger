@@ -13,7 +13,25 @@ export default function Navigation() {
     const [auth, setAuth] = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const userProfile = "userProfile/" + auth.name
+    function setNewUserUrl() {
+        if (auth !== null) {
+            navigate("userProfile/" + auth.name, { replace: true })
+
+            function setAvatarActive() {
+                const avatarBorder = document.querySelector(".avatar__img__border");
+                const { pathname } = document.location;
+
+                if (pathname === "/userProfile/" + auth.name) {
+                    avatarBorder.classList.add("activeAvatar")
+                } else {
+                    avatarBorder.classList.remove("activeAvatar")
+                }
+            }
+            setAvatarActive()
+        }
+    }
+
+
 
     function logout() {
         setAuth(null);
@@ -26,20 +44,18 @@ export default function Navigation() {
                 <Nav className="me-auto navLinks">
                     {auth ? (
                         <>
-                            <NavLink to="postList"><img src="/images/logo//Logo_main.svg" alt="React logo Home button" className="home__logo" /></NavLink>
+                            <NavLink to="postList"><img src="/images/logo/logo_main.png" alt="React logo Home button" className="home__logo" /></NavLink>
                             <div className="nav__icons__container">
                                 <NavLink to="postList"><HiHome className="nav__icon icon__home" /></NavLink>
                                 <NavLink to="profileList"><FaUsers className="nav__icon icon__profiles" /></NavLink>
-                                <NavLink to={userProfile}>
-                                    <div className="avatar__img__border">
-                                        <img src={auth.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : auth.avatar} alt="my profile button" className="nav__icon avatar__img__small" />
-                                    </div>
-                                </NavLink>
+                                <div className="avatar__img__border" onClick={setNewUserUrl}>
+                                    <img src={auth.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : auth.avatar} alt="my profile button" className="nav__icon avatar__img__small" />
+                                </div>
                                 <RiLogoutBoxLine onClick={logout} className="nav__icon icon__logoutBtn" />
                             </div>
                         </>
                     ) : (
-                        <NavLink to="/" end><img src="/images/logo//Logo_main.svg" alt="React logo, Home button" className="home__logo" /></NavLink>
+                        <NavLink to="/" end><img src="/images/logo/logo_main.png" alt="React logo, Home button" className="home__logo" /></NavLink>
                     )}
                 </Nav>
             </Container>
@@ -50,7 +66,3 @@ export default function Navigation() {
 Navigation.propTypes = {
     avatar: PropTypes.string,
 };
-
-
-
-

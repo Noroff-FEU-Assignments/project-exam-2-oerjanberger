@@ -54,7 +54,7 @@ export default function GetSpecificPost() {
                 <div className="avatar__img__border profileCard__avatar__border">
                     <img src={post.author.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : post.author.avatar} className="nav__icon avatar__img__small" alt={avatarAltText} />
                 </div>
-                <h2>{post.author.name}</h2>
+                <Heading size="2" content={post.author.name} />
             </div>
             <div className="specificPost__dateContainer">
                 <p>Created: {moment(post.created).format('lll')}</p>
@@ -73,12 +73,12 @@ export default function GetSpecificPost() {
             </div>
             <hr></hr>
             <div className="specificPost__interactionBtnContainer">
-                <button type="button" className="specificPost__interactBtn"><img src="/images/logo/Logo_main.svg" alt="react logo, react to the post" className="logo__btn" /><BsHandThumbsUpFill className="icon__thumbsUp" /></button>
+                <button type="button" className="specificPost__interactBtn"><img src="/images/logo//logo_main.png" alt="react logo, react to the post" className="logo__btn" /><BsHandThumbsUpFill className="icon__thumbsUp" /></button>
                 <button type="button" className="specificPost__interactBtn comment__btn">Comment<BiComment className="icon__comment" /></button>
             </div>
             <hr></hr>
             <CreateComment />
-            <h3>Comments</h3>
+            <Heading size="3" content="Comments" />
             <Container className="specificPost__commentsContainer">
                 {comments.map(function (comment) {
                     const { id, body, owner, created } = comment;
