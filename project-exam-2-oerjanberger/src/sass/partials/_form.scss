@@ -51,6 +51,17 @@ form {
     max-width: 35rem;
 }
 
+.form__createPost {
+    width: 35rem;
+
+    input,
+    textarea {
+        width: 100%;
+        max-width: 35rem;
+    }
+
+}
+
 @media (min-width: 768px) {
     .primary__input {
         width: 35rem;

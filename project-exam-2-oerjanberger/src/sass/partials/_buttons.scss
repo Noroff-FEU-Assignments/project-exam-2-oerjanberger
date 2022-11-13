@@ -25,3 +25,64 @@
         box-shadow: 2px 2px 10px getColour(secondaryColour);
     }
 }
+
+.homepage__buttons {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.createPostBtn__container {
+    position: -webkit-sticky;
+    position: sticky;
+    margin-left: auto;
+    right: 2.2rem;
+    z-index: 10;
+    bottom: 70px;
+    left: 100px;
+    background-color: getColour(primaryColour);
+    height: 4rem;
+    width: 4rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .createPostBtn__icon {
+        font-size: 2.5rem;
+        color: getColour(textColourSecondary);
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: getColour(secondaryColour);
+
+        .createPostBtn__icon {
+            color: getColour(primaryColour);
+        }
+    }
+}
+
+.edit__Btn {
+    max-width: 8rem;
+}
+
+.btn-close {
+    color: getColour(textColourSecondary);
+    opacity: 1;
+}
+
+@media (min-width: 768px) {
+    .homepage__buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 10rem;
+    }
+
+    .createPostBtn__container {
+        right: 3rem;
+    }
+}

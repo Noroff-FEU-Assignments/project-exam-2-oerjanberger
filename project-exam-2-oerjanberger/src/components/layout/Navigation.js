@@ -31,8 +31,6 @@ export default function Navigation() {
         }
     }
 
-
-
     function logout() {
         setAuth(null);
         navigate("/", { replace: true });
@@ -46,12 +44,12 @@ export default function Navigation() {
                         <>
                             <NavLink to="postList"><img src="/images/logo/logo_main.png" alt="React logo Home button" className="home__logo" /></NavLink>
                             <div className="nav__icons__container">
-                                <NavLink to="postList"><HiHome className="nav__icon icon__home" /></NavLink>
-                                <NavLink to="profileList"><FaUsers className="nav__icon icon__profiles" /></NavLink>
+                                <NavLink to="postList"><HiHome className="nav__icon icon__home" aria-label="post list" /></NavLink>
+                                <NavLink to="profileList"><FaUsers className="nav__icon icon__profiles" aria-label="profile list" /></NavLink>
                                 <div className="avatar__img__border" onClick={setNewUserUrl}>
-                                    <img src={auth.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : auth.avatar} alt="my profile button" className="nav__icon avatar__img__small" />
+                                    <img src={auth.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : auth.avatar} alt="my profile" className="nav__icon avatar__img__small" />
                                 </div>
-                                <RiLogoutBoxLine onClick={logout} className="nav__icon icon__logoutBtn" />
+                                <RiLogoutBoxLine onClick={logout} className="nav__icon icon__logoutBtn" aria-label="logout" />
                             </div>
                         </>
                     ) : (

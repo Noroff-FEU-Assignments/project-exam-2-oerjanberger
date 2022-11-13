@@ -45,10 +45,29 @@
     justify-content: center;
 
     .specificProfile__bannerImg {
-        height: 40vh;
+        height: 35vh;
+        max-height: 420px;
         width: 100%;
         max-width: 1920px;
         object-fit: cover;
     }
+}
 
+.specificProfile__avatar__border {
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid getColour(textColourPrimary);
+
+    .avatar__img__small {
+        width: 6.4rem;
+        height: 6.4rem;
+        margin-top: -12px;
+        margin-left: -12px;
+    }
+}
+
+.specificPost__img {
+    margin-top: 1rem;
+    max-width: 100%;
+    border-radius: 5px;
 }

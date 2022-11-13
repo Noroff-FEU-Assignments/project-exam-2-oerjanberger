@@ -7,6 +7,7 @@ import useAxios from "../hooks/useAxios";
 import moment from "moment";
 import Heading from "../layout/Heading";
 import PostCard from "../layout/PostCard";
+import CreatePostBtn from "../layout/CreatePostBtn";
 
 
 export default function GetSpecificProfile() {
@@ -28,8 +29,6 @@ export default function GetSpecificProfile() {
                 const Posts = await http.get(postsUrl)
                 setProfile(Profile.data)
                 setPosts(Posts.data)
-                console.log(Profile.data)
-                console.log(Posts.data)
             } catch (error) {
                 console.log(error);
                 setError("There seems to be a problem with showing this profile")
@@ -82,6 +81,7 @@ export default function GetSpecificProfile() {
                         return <PostCard key={id} id={id} avatar={profile.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : profile.avatar} name={profile.name} title={title} created={moment(created).format('lll')} updated={moment(updated).calendar()} image={media} body={body} reactions={_count.reactions} comments={_count.comments} />
                     })}
                 </Container>
+                <CreatePostBtn />
             </Container>
 
         </>

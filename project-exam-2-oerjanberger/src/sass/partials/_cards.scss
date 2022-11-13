@@ -30,10 +30,17 @@
     }
 }
 
+.usersPost__headingContainer {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
 
 //Profile card styles
 .profileCard {
     max-height: 7rem;
+    min-width: 320px;
 
     .profileCard__container,
     .profileCard__profileInfo__Container {
@@ -114,5 +121,9 @@
         .postCard__date {
             font-size: 0.8rem;
         }
+    }
+
+    .usersPost__headingContainer {
+        width: 100%;
     }
 }
