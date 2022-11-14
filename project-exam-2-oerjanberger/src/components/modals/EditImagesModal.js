@@ -1,7 +1,7 @@
 import Modal from 'react-bootstrap/Modal';
-import EditPost from "../forms/EditPost";
+import EditImages from "../forms/EditImages";
 
-export default function EditPostModal(props) {
+export default function EditImagesModal(props) {
     return (
         <Modal
             {...props}
@@ -11,11 +11,11 @@ export default function EditPostModal(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Edit Post
+                    Edit images
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <EditPost id={props.id} title={props.title} body={props.body} image={props.image} />
+                <EditImages name={props.name} avatar={props.avatar} banner={props.banner} />
             </Modal.Body>
         </Modal>
     )

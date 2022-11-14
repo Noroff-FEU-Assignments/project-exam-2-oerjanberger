@@ -8,13 +8,19 @@ import moment from "moment";
 import Heading from "../layout/Heading";
 import { MdEdit } from "react-icons/md"
 import UsersPostCard from "../layout/UsersPostCard";
+import EditImagesModal from "../modals/EditImagesModal";
 import CreatePostBtn from "../layout/CreatePostBtn";
+import { Link } from "react-router-dom";
 
 export default function GetUsersProfile() {
     const [profile, setProfile] = useState([]);
     const [posts, setPosts] = useState([]);
+    const [profileName, setProfileName] = useState(null);
+    const [avatar, setAvatar] = useState(null);
+    const [banner, setBanner] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [modalShow, setModalShow] = useState(false);
 
     let { name } = useParams();
     const profileUrl = `social/profiles/${name}?_following=true&_followers=true`
@@ -28,6 +34,7 @@ export default function GetUsersProfile() {
                 const Profile = await http.get(profileUrl);
                 const Posts = await http.get(postsUrl)
                 setProfile(Profile.data)
+                console.log(Profile.data)
                 setPosts(Posts.data)
             } catch (error) {
                 console.log(error);
@@ -61,9 +68,23 @@ export default function GetUsersProfile() {
                     </div>
                     <div className="specificPost__headingContainer">
                         <Heading size="1" content={profile.name} />
-                        <button className="primary__btn edit__Btn"><MdEdit /> Edit images</button>
+                        <button type="button" className="primary__btn edit__Btn" name={profile.name} avatar={profile.avatar} banner={profile.banner}
+                            onClick={() => {
+                                setModalShow(true)
+                                setProfileName(name)
+                                setAvatar(avatar)
+                                setBanner(banner)
+                            }}>
+                            <MdEdit /> Edit images</button>
                     </div>
                 </div>
+                <EditImagesModal
+                    name={profileName}
+                    avatar={avatar}
+                    banner={banner}
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                />
                 <div className="specificPost__profileInfo__Container">
                     <div className="profileCard__followersContainer">
                         <p className="number">{profile._count.followers}</p>
@@ -73,6 +94,10 @@ export default function GetUsersProfile() {
                         <p className="number">{profile._count.posts}</p>
                         <p>Posts</p>
                     </div>
+                    <Link to={`/profiles/${name}/following`} className="profileCard__postsContainer">
+                        <p className="number">{profile._count.following}</p>
+                        <p>Following</p>
+                    </Link>
                 </div>
                 <Heading size="2" content="Posts" />
                 <Container className="posts__container">

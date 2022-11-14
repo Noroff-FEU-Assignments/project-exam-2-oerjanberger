@@ -59,7 +59,16 @@ form {
         width: 100%;
         max-width: 35rem;
     }
+}
 
+.editPost__btnContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    .secondary__btn {
+        margin-bottom: 1rem;
+    }
 }
 
 @media (min-width: 768px) {

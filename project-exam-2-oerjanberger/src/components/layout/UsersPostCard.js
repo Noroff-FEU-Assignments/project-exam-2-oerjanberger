@@ -14,6 +14,7 @@ export default function UsersPostCard({ id, avatar, name, title, created, update
     const [postBody, setPostBody] = useState(null);
     const [postImage, setPostImage] = useState(null);
 
+
     return (
         <Card className="postCard">
             <Link to={`/post/${id}`}><Card.Img variant="top" src={image} alt={image === null || image === "" ? "" : title} /></Link>
@@ -24,7 +25,7 @@ export default function UsersPostCard({ id, avatar, name, title, created, update
                     </div>
                     <div className="specificPost__headingContainer usersPost__headingContainer">
                         <Heading size="3" content={name} className="postCard__author" />
-                        <button className="primary__btn edit__Btn" id={id} title={title} body={body} image={image}
+                        <button type="button" className="primary__btn edit__Btn" id={id} title={title} body={body} image={image}
                             onClick={() => {
                                 setModalShow(true)
                                 setPostId(id)

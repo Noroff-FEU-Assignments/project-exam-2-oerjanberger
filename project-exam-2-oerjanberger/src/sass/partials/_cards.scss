@@ -111,6 +111,20 @@
     justify-content: space-between;
 }
 
+
+//following cards
+.profileCard__following {
+    height: 10rem;
+    max-width: 300px;
+
+    .profileCard__avatar__border {
+        position: relative;
+        top: 20px;
+        left: 20px;
+        box-shadow: 3px 3px 5px getColour(modalBackgroundColour);
+    }
+}
+
 @media (min-width: 768px) {
     .postCard {
         .postCard__dateContainer {
