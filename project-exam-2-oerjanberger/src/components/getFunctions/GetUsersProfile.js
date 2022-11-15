@@ -34,7 +34,7 @@ export default function GetUsersProfile() {
                 const Profile = await http.get(profileUrl);
                 const Posts = await http.get(postsUrl)
                 setProfile(Profile.data)
-                console.log(Profile.data)
+
                 setPosts(Posts.data)
             } catch (error) {
                 console.log(error);
@@ -86,20 +86,20 @@ export default function GetUsersProfile() {
                     onHide={() => setModalShow(false)}
                 />
                 <div className="specificPost__profileInfo__Container">
-                    <div className="profileCard__followersContainer">
-                        <p className="number">{profile._count.followers}</p>
+                    <Link to={`/profiles/${name}/followers`} className="profileCard__followersContainer">
+                        <p className="number">{!profile._count.followers ? 0 : profile._count.followers}</p>
                         <p>Followers</p>
-                    </div>
-                    <div className="profileCard__postsContainer">
-                        <p className="number">{profile._count.posts}</p>
-                        <p>Posts</p>
-                    </div>
+                    </Link>
+
                     <Link to={`/profiles/${name}/following`} className="profileCard__postsContainer">
-                        <p className="number">{profile._count.following}</p>
+                        <p className="number">{!profile._count.following ? 0 : profile._count.following}</p>
                         <p>Following</p>
                     </Link>
                 </div>
-                <Heading size="2" content="Posts" />
+                <div className="profileCard__postsContainer">
+                    <Heading size="2" content="Posts" />
+                    <p className="number posts__number">{!profile._count.posts ? 0 : profile._count.posts}</p>
+                </div>
                 <Container className="posts__container">
                     {posts.map(function (post) {
                         const { id, title, created, updated, media, body, _count } = post;

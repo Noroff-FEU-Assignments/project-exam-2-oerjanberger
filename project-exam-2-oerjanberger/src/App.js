@@ -13,6 +13,7 @@ import ProfileList from "./components/pages/ProfileList";
 import SpecificPost from "./components/pages/SpecificPost";
 import SpecificProfile from "./components/pages/SpecificProfile";
 import Following from "./components/pages/Following";
+import Followers from "./components/pages/Followers";
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
             <Route path="/post/:id" exact element={<SpecificPost />} />
             <Route path="/profiles/:name" exact element={<SpecificProfile />} />
             <Route path="/profiles/:name/following" exact element={<Following />} />
+            <Route path="/profiles/:name/followers" exact element={<Followers />} />
           </Routes>
         </div>
       </Router>

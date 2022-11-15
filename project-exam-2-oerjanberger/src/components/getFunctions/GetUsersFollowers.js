@@ -4,26 +4,28 @@ import { Container } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
 import useAxios from "../hooks/useAxios";
-import FollowingProfileCard from "../layout/FollowingProfileCard";
+import FollowersProfileCard from "../layout/FollowersProfileCard";
 
-export default function GetUsersFollowing() {
+export default function GetUsersFollowers() {
     const [profiles, setProfiles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const http = useAxios();
     let { name } = useParams();
-    const profileUrl = `social/profiles/${name}?_following=true`
+    const profileUrl = `social/profiles/${name}?_following=true&_followers=true`
 
 
     useEffect(() => {
         async function getProfileData() {
             try {
                 const response = await http.get(profileUrl);
-                setProfiles(response.data.following)
+                console.log(response.data.followers)
+                setProfiles(response.data.followers)
+
             } catch (error) {
                 console.log(error);
-                setError(`There seems to be a problem with showing the profiles ${name} is following`)
+                setError(`There seems to be a problem with showing ${name} followers`)
             } finally {
                 setLoading(false)
             }
@@ -36,15 +38,13 @@ export default function GetUsersFollowing() {
     }
 
     if (error) {
-        return <Alert variant="danger">Unfortunately an error has occurred: {error}</Alert>
+        <Alert variant="danger">Unfortunately an error has occurred: {error}</Alert>
     }
-
-
     return (
         <Container className="followingProfiles__container">
             {profiles.map(function (profile) {
                 const { name, avatar } = profile;
-                return <FollowingProfileCard key={name} name={name} avatar={avatar} />
+                return <FollowersProfileCard key={name} name={name} avatar={avatar} />
             })}
         </Container>
     );

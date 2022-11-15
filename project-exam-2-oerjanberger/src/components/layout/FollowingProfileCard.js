@@ -16,8 +16,6 @@ export default function FollowingProfileCard({ name, avatar }) {
 
     async function unFollowUser() {
         const followUserUrl = BASE_URL + `social/profiles/${name}/unfollow`;
-        const followBtn = document.querySelector("#followBtn")
-
 
         try {
             await http.put(followUserUrl);
@@ -36,25 +34,22 @@ export default function FollowingProfileCard({ name, avatar }) {
 
     return (
         <Card className="profileCard profileCard__following">
-            <div className="profileCard__container">
-                <Link to={`/profiles/${name}`} >
-                    <div className="profileCard__imgContainer">
-                        <div className="avatar__img__border profileCard__avatar__border">
-                            <img src={avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : avatar} className="nav__icon avatar__img__small" alt={avatarAltText} />
-                        </div>
+            <Link to={`/profiles/${name}`} className="profileCard__container">
+                <div className="profileCard__imgContainer">
+                    <div className="avatar__img__border profileCard__avatar__border">
+                        <img src={avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : avatar} className="nav__icon avatar__img__small" alt={avatarAltText} />
                     </div>
-                </Link>
+                </div>
                 <Card.Body>
                     <div className="profileCard__profile__container">
                         <div className="profileCard__heading__container">
-                            <Link to={`/profiles/${name}`} ><Card.Title>{name}</Card.Title></Link>
-                            <button type="button" className="primary__btn secondary__btn" id="followBtn" onClick={unFollowUser} ><FiCheckCircle /> </button>
+                            <Card.Title>{name}</Card.Title>
+
                         </div>
                     </div>
                 </Card.Body>
-            </div>
-
-
+            </Link>
+            <button type="button" className="primary__btn secondary__btn follow__btn" id="followBtn" onClick={unFollowUser} ><FiCheckCircle /> </button>
         </Card>
     );
 };

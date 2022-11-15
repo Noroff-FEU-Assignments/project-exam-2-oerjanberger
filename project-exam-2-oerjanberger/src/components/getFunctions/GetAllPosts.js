@@ -20,7 +20,7 @@ export default function GetAllPosts() {
                 setPosts(response.data)
             } catch (error) {
                 console.log(error);
-                setError(error.toString)
+                setError(error)
             } finally {
                 setLoading(false)
             }

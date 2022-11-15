@@ -75,6 +75,18 @@
     opacity: 1;
 }
 
+.follow__checkbox {
+    display: none;
+}
+
+.follow__btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    text-align: center;
+    padding-top: 0.2rem;
+}
+
 @media (min-width: 768px) {
     .homepage__buttons {
         display: flex;

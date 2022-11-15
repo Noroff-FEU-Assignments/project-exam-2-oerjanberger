@@ -61,7 +61,7 @@ export default function GetSpecificProfile() {
                     </div>
                     <div className="specificPost__headingContainer">
                         <Heading size="1" content={profile.name} />
-                        <button className="primary__btn secondary__btn">Follow</button>
+                        <button type="button" className="primary__btn secondary__btn" id="follow__btn">Follow</button>
                     </div>
                 </div>
                 <div className="specificPost__profileInfo__Container">

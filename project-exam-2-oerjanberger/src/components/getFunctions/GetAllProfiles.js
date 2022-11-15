@@ -16,15 +16,15 @@ export default function GetAllProfiles() {
         async function getProfileData() {
             try {
                 const response = await http.get("social/profiles");
-                setProfiles(response.data)
+                setProfiles(response.data);
             } catch (error) {
                 console.log(error);
-                setError(error.toString)
+                setError(error);
             } finally {
-                setLoading(false)
+                setLoading(false);
             }
         }
-        getProfileData()
+        getProfileData();
     }, [])
 
     if (loading) {
@@ -40,6 +40,7 @@ export default function GetAllProfiles() {
                 const { name, banner, avatar, _count } = profile;
                 return <ProfileCard key={name} name={name} banner={banner} avatar={avatar} posts={_count.posts} followers={_count.followers} />
             })}
+
         </Container>
     );
 };
