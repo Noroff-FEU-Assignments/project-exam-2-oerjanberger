@@ -70,9 +70,20 @@
     max-width: 8rem;
 }
 
-.btn-close {
+.closeBtn {
+    position: relative;
+    top: 1rem;
+    margin-left: auto;
+    right: 2.2rem;
     color: getColour(textColourSecondary);
     opacity: 1;
+    background: getColour(modalBackgroundColour);
+    font-size: 2rem;
+
+    &:hover {
+        cursor: pointer;
+        color: getColour(primaryColour);
+    }
 }
 
 .follow__checkbox {

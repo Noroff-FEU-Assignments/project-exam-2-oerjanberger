@@ -63,11 +63,30 @@
         height: 6.4rem;
         margin-top: -12px;
         margin-left: -12px;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
+}
+
+.specificPost__imgContainer {
+    display: flex;
+    justify-content: center;
 }
 
 .specificPost__img {
     margin-top: 1rem;
-    max-width: 100%;
+    width: 80vw;
+    max-height: 50vh;
+    border-radius: 5px;
+    object-fit: cover;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.modal__largeImg {
     border-radius: 5px;
 }

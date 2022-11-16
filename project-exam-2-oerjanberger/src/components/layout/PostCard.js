@@ -8,15 +8,17 @@ export default function PostCard({ id, avatar, name, title, created, updated, im
 
     return (
         <Card className="postCard">
-            <Link to={`/post/${id}`}>
-                <Card.Img variant="top" src={image} alt={image === null || image === "" ? "" : title} />
-                <Card.Body>
+            <Link to={`/post/${id}`}><Card.Img variant="top" src={image} alt={image === null || image === "" ? "" : title} /></Link>
+            <Card.Body>
+                <Link to={`/profiles/${name}`}>
                     <div className="postCard__profileContainer">
                         <div className="avatar__img__border postCard__avatar__border">
                             <img src={avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : avatar} className="nav__icon avatar__img__small" alt={avatarAltText} />
                         </div>
                         <Heading size="3" content={name} className="postCard__author" />
                     </div>
+                </Link>
+                <Link to={`/post/${id}`}>
                     <div className="postCard__dateContainer">
                         <p className="postCard__date">Created: {created}</p>
                         <p className="postCard__date">Updated: {updated}</p>
@@ -36,8 +38,9 @@ export default function PostCard({ id, avatar, name, title, created, updated, im
                             <p>Comments</p>
                         </div>
                     </div>
-                </Card.Body>
-            </Link>
+                </Link>
+            </Card.Body>
+
         </Card>
     );
 };

@@ -22,9 +22,7 @@ export default function CreateComment() {
     });
 
     let { id } = useParams();
-
     const http = useAxios();
-
 
     async function onSubmit(data) {
         const commentUrl = BASE_URL + `social/posts/${id}/comment`
@@ -33,7 +31,6 @@ export default function CreateComment() {
         try {
             await http.post(commentUrl, data);
             navigate(0);
-
         } catch (error) {
             console.log(error);
             setCommentError("We were unable to submit your comment, please try again later");

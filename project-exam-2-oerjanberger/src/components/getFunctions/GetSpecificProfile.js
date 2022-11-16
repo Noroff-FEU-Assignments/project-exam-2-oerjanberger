@@ -8,13 +8,14 @@ import moment from "moment";
 import Heading from "../layout/Heading";
 import PostCard from "../layout/PostCard";
 import CreatePostBtn from "../layout/CreatePostBtn";
-
+import LargeImage from "../modals/LargeImage";
 
 export default function GetSpecificProfile() {
     const [profile, setProfile] = useState([]);
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [imageModalShow, setImageModalShow] = useState(false);
 
     let { name } = useParams();
     const profileUrl = `social/profiles/${name}?_following=true&_followers=true`
@@ -56,7 +57,7 @@ export default function GetSpecificProfile() {
             </div>
             <Container className="main__container specificProfile__page">
                 <div className="specificProfile__profileContainer">
-                    <div className="avatar__img__border profileCard__avatar__border specificProfile__avatar__border">
+                    <div className="avatar__img__border profileCard__avatar__border specificProfile__avatar__border" onClick={() => setImageModalShow(true)}>
                         <img src={profile.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : profile.avatar} className="nav__icon avatar__img__small specificProfile__avatar__img" alt={avatarAltText} />
                     </div>
                     <div className="specificPost__headingContainer">
@@ -83,7 +84,11 @@ export default function GetSpecificProfile() {
                 </Container>
                 <CreatePostBtn />
             </Container>
-
+            <LargeImage
+                show={imageModalShow}
+                onHide={() => setImageModalShow(false)}
+                image={profile.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : profile.avatar}
+            />
         </>
     );
 };

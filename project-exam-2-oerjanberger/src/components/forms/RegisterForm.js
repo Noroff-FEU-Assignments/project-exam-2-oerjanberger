@@ -31,7 +31,7 @@ export default function RegisterForm() {
         setRegisterError(null);
 
         try {
-            const response = await axios.post(registerUrl, data);
+            await axios.post(registerUrl, data);
             navigate(`/login`, { replace: true });
         } catch (error) {
             console.log(error);

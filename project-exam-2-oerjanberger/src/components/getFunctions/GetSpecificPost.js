@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
 import useAxios from "../hooks/useAxios";
@@ -10,12 +11,14 @@ import { BsHandThumbsUpFill } from "react-icons/bs";
 import { BiComment } from "react-icons/bi";
 import CreateComment from "../forms/CreateComment";
 import CommentCard from "../layout/CommentCard";
+import LargeImage from "../modals/LargeImage";
 
 export default function GetSpecificPost() {
     const [post, setPost] = useState([]);
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [imageModalShow, setImageModalShow] = useState(false);
 
     let { id } = useParams();
     const postUrl = `social/posts/${id}?_author=true&_comments=true&_reactions=true`
@@ -49,13 +52,20 @@ export default function GetSpecificPost() {
     return (
         <>
             <Heading size="1" content={post.title} />
-            <img src={post.media} className="specificPost__img" alt="" />
-            <div className="specificPost__profileContainer">
+            <div className="specificPost__imgContainer">
+                <img src={post.media} className="specificPost__img" alt="" onClick={() => setImageModalShow(true)} />
+            </div>
+            <LargeImage
+                show={imageModalShow}
+                onHide={() => setImageModalShow(false)}
+                image={post.media}
+            />
+            <Link to={`/profiles/${post.author.name}`} className="specificPost__profileContainer">
                 <div className="avatar__img__border profileCard__avatar__border">
                     <img src={post.author.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : post.author.avatar} className="nav__icon avatar__img__small" alt={avatarAltText} />
                 </div>
                 <Heading size="2" content={post.author.name} />
-            </div>
+            </Link>
             <div className="specificPost__dateContainer">
                 <p>Created: {moment(post.created).format('lll')}</p>
                 <p>Updated: {moment(post.updated).calendar()}</p>

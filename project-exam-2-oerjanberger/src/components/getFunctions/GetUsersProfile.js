@@ -11,6 +11,7 @@ import UsersPostCard from "../layout/UsersPostCard";
 import EditImagesModal from "../modals/EditImagesModal";
 import CreatePostBtn from "../layout/CreatePostBtn";
 import { Link } from "react-router-dom";
+import LargeImage from "../modals/LargeImage";
 
 export default function GetUsersProfile() {
     const [profile, setProfile] = useState([]);
@@ -21,6 +22,7 @@ export default function GetUsersProfile() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [modalShow, setModalShow] = useState(false);
+    const [imageModalShow, setImageModalShow] = useState(false);
 
     let { name } = useParams();
     const profileUrl = `social/profiles/${name}?_following=true&_followers=true`
@@ -32,27 +34,27 @@ export default function GetUsersProfile() {
         async function getUsersProfileData() {
             try {
                 const Profile = await http.get(profileUrl);
-                const Posts = await http.get(postsUrl)
-                setProfile(Profile.data)
+                const Posts = await http.get(postsUrl);
 
-                setPosts(Posts.data)
+                setProfile(Profile.data);
+                setPosts(Posts.data);
             } catch (error) {
                 console.log(error);
                 setError("There seems to be a problem with showing your profile")
             } finally {
                 setLoading(false)
-            }
-        }
-        getUsersProfileData()
-    }, [])
+            };
+        };
+        getUsersProfileData();
+    }, []);
 
     if (loading) {
         return <Spinner animation="border" variant="secondary" />
-    }
+    };
 
     if (error) {
-        <Alert variant="danger">Unfortunately an error has occurred: {error}</Alert>
-    }
+        <Alert variant="danger">{error}</Alert>
+    };
 
     const bannerAltText = `This is the banner image for ${profile.banner}`;
     const avatarAltText = `This is the avatar image for ${profile.avatar}`;
@@ -63,7 +65,7 @@ export default function GetUsersProfile() {
             </div>
             <Container className="main__container specificProfile__page">
                 <div className="specificProfile__profileContainer">
-                    <div className="avatar__img__border profileCard__avatar__border specificProfile__avatar__border">
+                    <div className="avatar__img__border profileCard__avatar__border specificProfile__avatar__border" onClick={() => setImageModalShow(true)} >
                         <img src={profile.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : profile.avatar} className="nav__icon avatar__img__small specificProfile__avatar__img" alt={avatarAltText} />
                     </div>
                     <div className="specificPost__headingContainer">
@@ -90,7 +92,6 @@ export default function GetUsersProfile() {
                         <p className="number">{!profile._count.followers ? 0 : profile._count.followers}</p>
                         <p>Followers</p>
                     </Link>
-
                     <Link to={`/profiles/${name}/following`} className="profileCard__postsContainer">
                         <p className="number">{!profile._count.following ? 0 : profile._count.following}</p>
                         <p>Following</p>
@@ -108,7 +109,11 @@ export default function GetUsersProfile() {
                 </Container>
                 <CreatePostBtn />
             </Container>
-
+            <LargeImage
+                show={imageModalShow}
+                onHide={() => setImageModalShow(false)}
+                image={profile.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : profile.avatar}
+            />
         </>
     );
 };

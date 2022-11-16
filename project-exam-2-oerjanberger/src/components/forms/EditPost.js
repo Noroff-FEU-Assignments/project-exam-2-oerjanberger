@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "react-bootstrap";
@@ -73,7 +73,6 @@ export default function EditPost(props) {
                 <button className="primary__btn form__btn">Update Post</button>
                 <button type="button" className="primary__btn secondary__btn form__btn" id="delete__btn" onClick={deletePost}>Delete Post</button>
             </div>
-
         </Form>
     );
 };

@@ -27,13 +27,6 @@ export default function CheckIfFollowing() {
                 followingData.forEach(function (obj) {
                     followingNames.push(obj["name"]);
                 });
-                console.log(profileNames)
-                console.log(followingNames)
-
-                followingNames.forEach(o => {
-                    const isMatch = object.entries(0).every(arr => profileNames[arr[0]] == arr[1]);
-                    console.log([isMatch, o]);
-                })
 
             } catch (error) {
                 console.log(error);

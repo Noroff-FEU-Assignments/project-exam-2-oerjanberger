@@ -1,16 +1,19 @@
+import PropTypes from "prop-types";
 import Modal from 'react-bootstrap/Modal';
 import EditImages from "../forms/EditImages";
+import { AiOutlineClose } from "react-icons/ai";
 
 export default function EditImagesModal(props) {
     return (
         <Modal
             {...props}
             size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
+            aria-labelledby="Edit images"
             centered
         >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
+            <AiOutlineClose onClick={props.onHide} className="closeBtn" />
+            <Modal.Header>
+                <Modal.Title>
                     Edit images
                 </Modal.Title>
             </Modal.Header>
@@ -18,5 +21,9 @@ export default function EditImagesModal(props) {
                 <EditImages name={props.name} avatar={props.avatar} banner={props.banner} />
             </Modal.Body>
         </Modal>
-    )
-}
+    );
+};
+
+EditImagesModal.propTypes = {
+    props: PropTypes.object,
+};
