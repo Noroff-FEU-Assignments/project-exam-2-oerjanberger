@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 import Heading from "../layout/Heading";
+import DisplayReactions from "../layout/DisplayReactions";
 
 export default function PostCard({ id, avatar, name, title, created, updated, image, body, reactions, comments }) {
     const avatarAltText = "This is the avatar image of " + name
@@ -29,10 +30,7 @@ export default function PostCard({ id, avatar, name, title, created, updated, im
                         <p className="postCard__seeMore">...</p>
                     </div>
                     <div className="postCard__interactionContainer">
-                        <div className="postCard__reactionsContainer">
-                            <p className="number">{reactions}</p>
-                            <p>Reactions</p>
-                        </div>
+                        {DisplayReactions(reactions)}
                         <div className="postCard__commentsContainer">
                             <p className="number">{comments}</p>
                             <p>Comments</p>
@@ -55,5 +53,5 @@ PostCard.propTypes = {
     image: PropTypes.string,
     body: PropTypes.string,
     comments: PropTypes.number.isRequired,
-    reactions: PropTypes.number.isRequired,
+    reactions: PropTypes.array.isRequired,
 };

@@ -16,7 +16,7 @@ export default function GetAllPosts() {
     useEffect(() => {
         async function getPostData() {
             try {
-                const response = await http.get("social/posts?_author=true");
+                const response = await http.get("social/posts/?_author=true&_comments=true&_reactions=true");
                 setPosts(response.data)
             } catch (error) {
                 console.log(error);
@@ -38,8 +38,8 @@ export default function GetAllPosts() {
     return (
         <Container className="posts__container">
             {posts.map(function (post) {
-                const { id, author, title, created, updated, media, body, _count } = post;
-                return <PostCard key={id} id={id} avatar={author.avatar} name={author.name} title={title} created={moment(created).format('lll')} updated={moment(updated).calendar()} image={media} body={body} reactions={_count.reactions} comments={_count.comments} />
+                const { id, author, title, created, updated, media, body, _count, reactions } = post;
+                return <PostCard key={id} id={id} avatar={author.avatar} name={author.name} title={title} created={moment(created).format('lll')} updated={moment(updated).calendar()} image={media} body={body} reactions={reactions.length === 0 ? [] : reactions} comments={_count.comments} />
             })}
         </Container>
     );

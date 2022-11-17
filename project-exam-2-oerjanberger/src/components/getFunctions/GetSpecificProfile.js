@@ -19,7 +19,7 @@ export default function GetSpecificProfile() {
 
     let { name } = useParams();
     const profileUrl = `social/profiles/${name}?_following=true&_followers=true`
-    const postsUrl = `social/profiles/${name}/posts`
+    const postsUrl = `social/profiles/${name}/posts/?_comments=true&_reactions=true`
 
     const http = useAxios();
 
@@ -78,8 +78,8 @@ export default function GetSpecificProfile() {
                 <Heading size="2" content="Posts" />
                 <Container className="posts__container">
                     {posts.map(function (post) {
-                        const { id, title, created, updated, media, body, _count } = post;
-                        return <PostCard key={id} id={id} avatar={profile.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : profile.avatar} name={profile.name} title={title} created={moment(created).format('lll')} updated={moment(updated).calendar()} image={media} body={body} reactions={_count.reactions} comments={_count.comments} />
+                        const { id, title, created, updated, media, body, _count, reactions } = post;
+                        return <PostCard key={id} id={id} avatar={profile.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : profile.avatar} name={profile.name} title={title} created={moment(created).format('lll')} updated={moment(updated).calendar()} image={media} body={body} reactions={reactions.length === 0 ? [] : reactions} comments={_count.comments} />
                     })}
                 </Container>
                 <CreatePostBtn />

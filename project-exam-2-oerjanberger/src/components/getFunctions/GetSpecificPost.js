@@ -12,6 +12,7 @@ import { BiComment } from "react-icons/bi";
 import CreateComment from "../forms/CreateComment";
 import CommentCard from "../layout/CommentCard";
 import LargeImage from "../modals/LargeImage";
+import DisplayReactions from "../layout/DisplayReactions";
 
 export default function GetSpecificPost() {
     const [post, setPost] = useState([]);
@@ -72,10 +73,7 @@ export default function GetSpecificPost() {
             </div>
             <p>{post.body}</p>
             <div className="specificPost__interactionInfoContainer">
-                <div className="specificPost__numberReactionsContainer">
-                    <p className="number">{post._count.reactions}</p>
-                    <p>Reactions</p>
-                </div>
+                {DisplayReactions(post.reactions)}
                 <div className="specificPost__numberCommentsContainer">
                     <p className="number">{post._count.comments}</p>
                     <p>Comments</p>

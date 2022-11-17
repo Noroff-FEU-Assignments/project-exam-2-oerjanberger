@@ -21,17 +21,16 @@ export default function CheckIfFollowing() {
                 let profileNames = [];
                 let followingNames = [];
 
-                profileData.forEach(function (obj) {
-                    profileNames.push(obj["name"]);
-                });
                 followingData.forEach(function (obj) {
                     followingNames.push(obj["name"]);
                 });
 
+                profileData.forEach(function (obj) {
+                    profileNames.push(obj["name"]);
+                });
             } catch (error) {
                 console.log(error);
             };
-
         }
         checkUserFollowing();
     }, []);

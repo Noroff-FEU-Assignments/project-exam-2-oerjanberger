@@ -3,19 +3,17 @@ import { FiCheckCircle } from "react-icons/fi";
 import { useState } from "react";
 import useAxios from "../hooks/useAxios";
 import Alert from "react-bootstrap/Alert";
-import ToggleButton from "react-bootstrap/ToggleButton"
+import ToggleButton from "react-bootstrap/ToggleButton";
 
-export default function FollowBtn(name) {
+export default function FollowBtn(props) {
     const [label, setLabel] = useState("Follow");
     const [checked, setChecked] = useState(false);
     const [error, setError] = useState(null);
-
     const http = useAxios();
 
-    async function followUser(checkbox, id) {
-        const followUserUrl = `social/profiles/${id}/follow`;
-        const unFollowUserUrl = `social/profiles/${id}/unfollow`;
-        console.log(checkbox, id)
+    async function followUser(checkbox) {
+        const followUserUrl = `social/profiles/${props.name}/follow`;
+        const unFollowUserUrl = `social/profiles/${props.name}/unfollow`;
         if (checkbox) {
             try {
                 await http.put(followUserUrl);
@@ -37,28 +35,27 @@ export default function FollowBtn(name) {
                 console.log(error);
                 setError("There seems to be a problem with unfollowing this profile")
             };
-
             if (error) {
                 <Alert variant="danger">{error}</Alert>
-            }
-        }
-    }
+            };
+        };
+    };
     return (
         <ToggleButton
             className="mb-2 primary__btn secondary__btn follow__btn"
-            id={name}
+            id={props.name}
             type="checkbox"
             variant="outline-primary"
             checked={checked}
-            value={name}
+            value={props.name}
             onChange={(e) => {
                 setChecked(e.currentTarget.checked);
-                followUser(e.currentTarget.checked, e.currentTarget.id);
+                followUser(e.currentTarget.checked);
             }}>
             {label}
         </ToggleButton>
-    )
-}
+    );
+};
 
 FollowBtn.propTypes = {
     name: PropTypes.string.isRequired,
