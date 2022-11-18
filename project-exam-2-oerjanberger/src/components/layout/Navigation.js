@@ -10,7 +10,7 @@ import { FaUsers } from "react-icons/fa";
 import ConfirmLogout from "../modals/ConfirmLogout";
 
 export default function Navigation() {
-    const [auth] = useContext(AuthContext);
+    const [auth, setAuth] = useContext(AuthContext);
     const [modalShow, setModalShow] = useState(false);
     const [showPostListHover, setShowPostListHover] = useState(false);
     const [showProfileListHover, setShowProfileListHover] = useState(false);
@@ -34,6 +34,16 @@ export default function Navigation() {
         } else {
             avatarBorder.classList.remove("activeAvatar");
         };
+    };
+
+    function logout() {
+        setModalShow(false)
+        setAuth(null);
+        navigate("/", { replace: true });
+    };
+
+    function cancelLogout() {
+        setModalShow(false)
     };
 
     return (
@@ -80,8 +90,9 @@ export default function Navigation() {
                                 </div>
                             </div>
                             <ConfirmLogout
-                                show={modalShow}
-                                onHide={() => setModalShow(false)}
+                                showModal={modalShow}
+                                cancel={cancelLogout}
+                                confirm={logout}
                             />
                         </>
                     ) : (

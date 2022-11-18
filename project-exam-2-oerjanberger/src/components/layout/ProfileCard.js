@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
-import FollowBtn from "../layout/FollowBtn";
+import CheckIfFollowing from "../follow/CheckIfFollowing";
 
 export default function ProfileCard({ name, avatar, banner, posts, followers }) {
     const avatarAltText = "this is the avatar image of " + name
@@ -35,7 +35,7 @@ export default function ProfileCard({ name, avatar, banner, posts, followers }) 
                     </div>
                 </Card.Body>
             </Link>
-            <FollowBtn name={name} />
+            {/* {CheckIfFollowing(name)} */}
         </Card>
     );
 };

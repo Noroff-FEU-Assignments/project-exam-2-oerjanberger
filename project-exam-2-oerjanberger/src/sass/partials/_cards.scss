@@ -36,7 +36,6 @@
     justify-content: space-between;
 }
 
-
 //Profile card styles
 .profileCard {
     max-height: 7rem;
@@ -109,6 +108,10 @@
 .profileCard__heading__container {
     display: flex;
     justify-content: space-between;
+}
+
+.reactionSymbols {
+    letter-spacing: 0.3rem;
 }
 
 

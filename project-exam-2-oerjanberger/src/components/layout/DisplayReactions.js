@@ -8,13 +8,13 @@ export default function DisplayReactions(props) {
         let symbols = ""
         props.forEach(setSymbols);
         function setSymbols(props) {
-            symbols += props.count + props.symbol;
+            symbols += props.count + props.symbol + "|";
         }
 
         allReactions = <div className="postCard__reactionsContainer__with__symbols">
             <p>Reactions</p>
             <div className="postCard__symbolContainer">
-                {symbols}
+                <p className="number reactionSymbols">{symbols}</p>
             </div>
         </div>
         return allReactions

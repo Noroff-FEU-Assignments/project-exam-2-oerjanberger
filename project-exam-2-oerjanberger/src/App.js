@@ -16,6 +16,7 @@ import Following from "./components/pages/Following";
 import Followers from "./components/pages/Followers";
 
 export default function App() {
+  // const [auth] = useState
   return (
     <AuthProvider>
       <Router>

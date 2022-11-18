@@ -7,12 +7,12 @@ import Alert from "react-bootstrap/Alert";
 import useAxios from "../hooks/useAxios";
 import moment from "moment";
 import Heading from "../layout/Heading";
-import { BsHandThumbsUpFill } from "react-icons/bs";
 import { BiComment } from "react-icons/bi";
 import CreateComment from "../forms/CreateComment";
 import CommentCard from "../layout/CommentCard";
 import LargeImage from "../modals/LargeImage";
 import DisplayReactions from "../layout/DisplayReactions";
+import ReactionBtn from "../layout/ReactionBtn";
 
 export default function GetSpecificPost() {
     const [post, setPost] = useState([]);
@@ -81,7 +81,7 @@ export default function GetSpecificPost() {
             </div>
             <hr></hr>
             <div className="specificPost__interactionBtnContainer">
-                <button type="button" className="specificPost__interactBtn"><img src="/images/logo//logo_main.png" alt="react logo, react to the post" className="logo__btn" /><BsHandThumbsUpFill className="icon__thumbsUp" /></button>
+                <ReactionBtn id={post.id} />
                 <button type="button" className="specificPost__interactBtn comment__btn">Comment<BiComment className="icon__comment" /></button>
             </div>
             <hr></hr>
