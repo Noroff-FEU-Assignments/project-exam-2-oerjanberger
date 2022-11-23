@@ -82,7 +82,7 @@ export default function GetSpecificPost() {
             </div>
             <p>{post.body}</p>
             <div className="specificPost__interactionInfoContainer">
-                {DisplayReactions(post.reactions)}
+                <DisplayReactions props={post.reactions} />
                 <div className="specificPost__numberCommentsContainer">
                     <p className="number">{post._count.comments}</p>
                     <p>Comments</p>

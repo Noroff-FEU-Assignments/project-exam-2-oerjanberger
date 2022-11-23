@@ -15,7 +15,7 @@ export default function EmojiTwo() {
 
     const http = useAxios();
 
-    async function handleChange(value) {
+    async function handleClick(value) {
         const reactUrl = `social/posts/${id}/react/${value}`
         try {
             await http.put(reactUrl);
@@ -29,7 +29,7 @@ export default function EmojiTwo() {
         <>
             {emojis.map(function (symbol) {
                 const { emoji, description } = symbol;
-                return <button type='button' key={emoji} value={emoji} description={description} onClick={(e) => handleChange(e.currentTarget.value)} className="emoji__btn">{emoji}</button>
+                return <button type='button' key={emoji} value={emoji} aria-label={description} onClick={(e) => handleClick(e.currentTarget.value)} className="emoji__btn">{emoji}</button>
             })}
         </>
     );

@@ -27,14 +27,17 @@ export default function PostCard({ id, avatar, name, title, created, updated, im
                     <div className="postCard__textContainer">
                         <Card.Text>{body && body.length > 100 ? body.substring(0, 100) + "..." : body}</Card.Text>
                     </div>
-                    <div className="postCard__interactionContainer">
-                        {DisplayReactions(reactions)}
+                </Link>
+                <div className="postCard__interactionContainer">
+                    <DisplayReactions props={reactions} />
+                    <Link to={`/post/${id}`}>
                         <div className="postCard__commentsContainer">
                             <p className="number">{comments}</p>
                             <p>Comments</p>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
+                </div>
+
             </Card.Body>
 
         </Card>
