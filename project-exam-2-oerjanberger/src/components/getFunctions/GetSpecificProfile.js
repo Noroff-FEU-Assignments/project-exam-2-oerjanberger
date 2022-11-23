@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Container } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
@@ -52,6 +53,13 @@ export default function GetSpecificProfile() {
     const avatarAltText = `This is the avatar image for ${profile.avatar}`;
     return (
         <>
+            <Helmet>
+                <title>The profile of {profile.name}</title>
+                <meta
+                    name="description"
+                    content="This is the profile of"{...profile.name}
+                />;
+            </Helmet>
             <div className="specificPost__bannerContainer">
                 <img src={profile.banner === null ? "/images/defaultImages/default_banner_img.jpg" : profile.banner} className="specificProfile__bannerImg" alt={bannerAltText} />
             </div>

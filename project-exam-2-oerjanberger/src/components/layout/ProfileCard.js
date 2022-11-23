@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
-import CheckIfFollowing from "../follow/CheckIfFollowing";
-
+import FollowBtn from "../follow/FollowBtn";
+import SetFollowBtnToFollow from "../follow/SetFollowBtnToFollow";
+import SetFollowBtnToUnfollow from "../follow/SetFollowBtnToUnfollow";
 export default function ProfileCard({ name, avatar, banner, posts, followers }) {
     const avatarAltText = "this is the avatar image of " + name
     const bannerAltText = "this is the banner image of " + name
-
     return (
         <Card className="profileCard">
             <Link to={`/profiles/${name}`} className="profileCard__container">
@@ -35,7 +35,7 @@ export default function ProfileCard({ name, avatar, banner, posts, followers }) 
                     </div>
                 </Card.Body>
             </Link>
-            {/* {CheckIfFollowing(name)} */}
+            {/* <FollowBtn onClick={SetFollowBtnToUnfollow} /> */}
         </Card>
     );
 };

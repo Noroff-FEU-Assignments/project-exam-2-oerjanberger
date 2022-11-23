@@ -8,7 +8,7 @@ import axios from "axios";
 import { BASE_URL } from "../../constants/Api";
 import FormError from "../common/FormError";
 
-let emailRegex = new RegExp("[a-z0-9]+@stud.noroff.no");
+let emailRegex = new RegExp("[a-z0-9]+@((stud.noroff|noroff)\.no)");
 
 const schema = yup.object().shape({
     name: yup.string().required("Please enter your username"),

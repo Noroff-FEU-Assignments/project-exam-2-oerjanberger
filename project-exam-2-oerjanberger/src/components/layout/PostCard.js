@@ -3,7 +3,6 @@ import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 import Heading from "../layout/Heading";
 import DisplayReactions from "../layout/DisplayReactions";
-
 export default function PostCard({ id, avatar, name, title, created, updated, image, body, reactions, comments }) {
     const avatarAltText = "This is the avatar image of " + name
 
@@ -26,8 +25,7 @@ export default function PostCard({ id, avatar, name, title, created, updated, im
                     </div>
                     <Card.Title>{title}</Card.Title>
                     <div className="postCard__textContainer">
-                        <Card.Text>{body}</Card.Text>
-                        <p className="postCard__seeMore">...</p>
+                        <Card.Text>{body && body.length > 100 ? body.substring(0, 100) + "..." : body}</Card.Text>
                     </div>
                     <div className="postCard__interactionContainer">
                         {DisplayReactions(reactions)}

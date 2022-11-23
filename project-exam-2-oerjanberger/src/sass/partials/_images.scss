@@ -90,3 +90,16 @@
 .modal__largeImg {
     border-radius: 5px;
 }
+
+.infoPage__imgContainer {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+
+    .about__image {
+        width: 100%;
+        object-fit: cover;
+        max-height: 40vh;
+        max-width: 1920px;
+    }
+}

@@ -1,5 +1,5 @@
 export default function DisplayReactions(props) {
-    let allReactions = <div className="postCard__reactionsContainer">
+    let allReactions = <div className="postCard__reactionsContainer" >
         <p className="number">0</p>
         <p>Reactions</p>
     </div>;

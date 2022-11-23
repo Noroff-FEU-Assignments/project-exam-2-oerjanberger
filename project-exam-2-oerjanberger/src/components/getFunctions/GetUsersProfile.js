@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import { Helmet } from "react-helmet-async";
 import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
 import useAxios from "../hooks/useAxios";
@@ -60,6 +61,13 @@ export default function GetUsersProfile() {
     const avatarAltText = `This is the avatar image for ${profile.avatar}`;
     return (
         <>
+            <Helmet>
+                <title>This is you profile, {profile.name}</title>
+                <meta
+                    name="description"
+                    content="Welcome to your profile, here you can edit your images and see your posts in chronological order"
+                />;
+            </Helmet>
             <div className="specificPost__bannerContainer">
                 <img src={profile.banner === null ? "/images/defaultImages/default_banner_img.jpg" : profile.banner} className="specificProfile__bannerImg" alt={bannerAltText} />
             </div>

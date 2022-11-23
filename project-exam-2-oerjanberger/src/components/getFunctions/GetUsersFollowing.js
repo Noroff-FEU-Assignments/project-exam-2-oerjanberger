@@ -15,7 +15,6 @@ export default function GetUsersFollowing() {
     let { name } = useParams();
     const profileUrl = `social/profiles/${name}?_following=true`
 
-
     useEffect(() => {
         async function getProfileData() {
             try {

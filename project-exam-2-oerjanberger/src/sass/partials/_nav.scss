@@ -17,7 +17,8 @@
 }
 
 .nav__icons__container {
-    width: 30vh;
+    width: 50vw;
+    max-width: 400px;
     display: flex;
     justify-content: space-around;
 
@@ -43,16 +44,13 @@
     font-size: 2rem;
 }
 
-
-
-@media (min-width: 576px) {
-    .nav__icons__container {
-        width: 60vh;
-    }
+.hover__container {
+    display: none;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
     .hover__container {
+        display: block;
         position: absolute;
         top: 3.7rem;
         width: 10rem;

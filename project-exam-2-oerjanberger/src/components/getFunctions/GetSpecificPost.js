@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
@@ -7,7 +8,7 @@ import Alert from "react-bootstrap/Alert";
 import useAxios from "../hooks/useAxios";
 import moment from "moment";
 import Heading from "../layout/Heading";
-import { BiComment } from "react-icons/bi";
+import CommentBtn from "../layout/CommentBtn";
 import CreateComment from "../forms/CreateComment";
 import CommentCard from "../layout/CommentCard";
 import LargeImage from "../modals/LargeImage";
@@ -49,9 +50,17 @@ export default function GetSpecificPost() {
     if (error) {
         <Alert variant="danger">Unfortunately an error has occurred: {error}</Alert>
     }
+
     const avatarAltText = `This is the avatar image for ${post.author.avatar}`;
     return (
         <>
+            <Helmet>
+                <title>{post.title}</title>
+                <meta
+                    name="description"
+                    content={post.body ? post.body : post.title}
+                />;
+            </Helmet>
             <Heading size="1" content={post.title} />
             <div className="specificPost__imgContainer">
                 <img src={post.media} className="specificPost__img" alt="" onClick={() => setImageModalShow(true)} />
@@ -81,8 +90,8 @@ export default function GetSpecificPost() {
             </div>
             <hr></hr>
             <div className="specificPost__interactionBtnContainer">
-                <ReactionBtn id={post.id} />
-                <button type="button" className="specificPost__interactBtn comment__btn">Comment<BiComment className="icon__comment" /></button>
+                <ReactionBtn id={post.id} onClick />
+                <CommentBtn />
             </div>
             <hr></hr>
             <CreateComment />

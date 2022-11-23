@@ -95,21 +95,8 @@
 }
 
 
-.emoji__container {
-    position: absolute;
-    margin-top: 1rem;
-    min-width: 10rem;
-    min-height: 5rem;
-    background-color: getColour(modalBackgroundColour);
-    border-radius: 5px;
-    color: getColour(textColourSecondary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    p {
-        margin-bottom: 0px;
-    }
+.specificPost__interactBtn:hover {
+    cursor: pointer;
 }
 
 

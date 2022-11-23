@@ -33,7 +33,7 @@ export default function CreateComment() {
             navigate(0);
         } catch (error) {
             console.log(error);
-            setCommentError("We were unable to submit your comment, please try again later");
+            setCommentError("We were unfortunately unable to submit your comment");
         };
     };
 
@@ -41,7 +41,7 @@ export default function CreateComment() {
         <Form onSubmit={handleSubmit(onSubmit)} className="form__createComment">
             {commentError && <FormError>{commentError}</FormError>}
             <Form.Group className="mb-3">
-                <Form.Control {...register("body")} as="textarea" placeholder="Write a comment..." className="primary__input" />
+                <Form.Control {...register("body")} as="textarea" placeholder="Write a comment..." className="primary__input" id="comment__input" />
                 {errors.body && <FormError>{errors.body.message}</FormError>}
             </Form.Group>
             <button className="primary__btn form__btn">Post Comment</button>
