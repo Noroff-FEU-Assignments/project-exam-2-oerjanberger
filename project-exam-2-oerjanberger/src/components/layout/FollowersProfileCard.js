@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
-
-export default function FollowersProfileCard({ name, avatar }) {
+import CheckIfFollowing from "../follow/CheckIfFollowing";
+export default function FollowersProfileCard({ name, avatar, following }) {
     const avatarAltText = "this is the avatar image of " + name
 
     return (
@@ -19,6 +19,9 @@ export default function FollowersProfileCard({ name, avatar }) {
                     </div>
                 </Card.Body>
             </Link>
+            <div className="profileCard__followingBtn__container">
+                <CheckIfFollowing followingNames={following} profileName={name} />
+            </div>
         </Card>
     );
 };
@@ -26,4 +29,5 @@ export default function FollowersProfileCard({ name, avatar }) {
 FollowersProfileCard.propTypes = {
     name: PropTypes.string.isRequired,
     avatar: PropTypes.string,
+    following: PropTypes.array.isRequired,
 };

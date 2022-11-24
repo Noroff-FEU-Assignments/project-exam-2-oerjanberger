@@ -1,25 +1,27 @@
-import PropTypes from "prop-types";
-import { useState, useContext, useEffect } from "react";
-import AuthContext from "../context/AuthContext";
-import useAxios from "../hooks/useAxios";
+import { useState, useEffect } from "react";
 import FollowBtn from "./FollowBtn";
-import UnFollowBtn from "./UnFollowBtn";
+import UnfollowBtn from "./UnFollowBtn";
 
-export default function CheckIfFollowing({ props }) {
+export default function CheckIfFollowing(props) {
+    const [following, setFollowing] = useState(false);
 
-    const [following, setFollowing] = useState([]);
+    const followingNames = props.followingNames;
+    const profileName = props.profileName;
 
+    useEffect(() => {
+        function matchFollowing() {
+            const match = followingNames.find(name => name === profileName);
+            if (match) {
+                setFollowing(true);
+            };
+        };
+        matchFollowing();
+    }, []);
 
-
-
-    // if (following) {
-    //     return <FollowBtn name={props.name} />
-    // }
-    // if (!following) {
-    //     return <UnFollowBtn name={props.name} />
-    // }
-};
-
-CheckIfFollowing.propTypes = {
-    name: PropTypes.string.isRequired,
+    if (following) {
+        return <UnfollowBtn name={profileName} />
+    };
+    if (!following) {
+        return <FollowBtn name={profileName} />
+    };
 };

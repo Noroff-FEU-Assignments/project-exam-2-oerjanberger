@@ -1,37 +1,11 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
-import { BASE_URL } from "../../constants/Api";
-import { FiCheckCircle } from "react-icons/fi";
-import useAxios from "../hooks/useAxios";
-import Alert from "react-bootstrap/Alert";
+import CheckIfFollowing from "../follow/CheckIfFollowing";
 
-export default function FollowingProfileCard({ name, avatar }) {
+
+export default function FollowingProfileCard({ name, avatar, following }) {
     const avatarAltText = "this is the avatar image of " + name
-
-    const [error, setError] = useState(null);
-    const http = useAxios();
-
-
-    async function unFollowUser() {
-        const followUserUrl = BASE_URL + `social/profiles/${name}/unfollow`;
-
-        try {
-            await http.put(followUserUrl);
-
-
-        } catch (error) {
-            console.log(error);
-            setError("There seems to be a problem with unfollowing this profile")
-        };
-
-        if (error) {
-            <Alert variant="danger">Unfortunately an error has occurred: {error}</Alert>
-        }
-    }
-
-
     return (
         <Card className="profileCard profileCard__following">
             <Link to={`/profiles/${name}`} className="profileCard__container">
@@ -49,7 +23,9 @@ export default function FollowingProfileCard({ name, avatar }) {
                     </div>
                 </Card.Body>
             </Link>
-            <button type="button" className="primary__btn secondary__btn follow__btn" id="followBtn" onClick={unFollowUser} ><FiCheckCircle /> </button>
+            <div className="profileCard__followingBtn__container">
+                <CheckIfFollowing followingNames={following} profileName={name} />
+            </div>
         </Card>
     );
 };
@@ -57,4 +33,5 @@ export default function FollowingProfileCard({ name, avatar }) {
 FollowingProfileCard.propTypes = {
     name: PropTypes.string.isRequired,
     avatar: PropTypes.string,
+    following: PropTypes.array.isRequired,
 };

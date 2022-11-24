@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 import { Helmet } from "react-helmet-async";
 import { Container } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
@@ -10,17 +11,21 @@ import Heading from "../layout/Heading";
 import PostCard from "../layout/PostCard";
 import CreatePostBtn from "../layout/CreatePostBtn";
 import LargeImage from "../modals/LargeImage";
+import CheckIfFollowing from "../follow/CheckIfFollowing";
 
 export default function GetSpecificProfile() {
     const [profile, setProfile] = useState([]);
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [following, setFollowing] = useState([]);
     const [error, setError] = useState(null);
     const [imageModalShow, setImageModalShow] = useState(false);
+    const [auth] = useContext(AuthContext);
 
     let { name } = useParams();
-    const profileUrl = `social/profiles/${name}?_following=true&_followers=true`
-    const postsUrl = `social/profiles/${name}/posts/?_comments=true&_reactions=true`
+    const profileUrl = `social/profiles/${name}?_following=true&_followers=true`;
+    const postsUrl = `social/profiles/${name}/posts/?_comments=true&_reactions=true`;
+    const followingUrl = `social/profiles/${auth.name}?_following=true`;
 
     const http = useAxios();
 
@@ -29,6 +34,14 @@ export default function GetSpecificProfile() {
             try {
                 const Profile = await http.get(profileUrl);
                 const Posts = await http.get(postsUrl)
+                const userFollowing = await http.get(followingUrl);
+                const followingData = userFollowing.data.following;
+                let followingNames = [];
+
+                followingData.forEach(function (obj) {
+                    followingNames.push(obj["name"]);
+                });
+                setFollowing(followingNames)
                 setProfile(Profile.data)
                 setPosts(Posts.data)
             } catch (error) {
@@ -70,7 +83,7 @@ export default function GetSpecificProfile() {
                     </div>
                     <div className="specificPost__headingContainer">
                         <Heading size="1" content={profile.name} />
-                        <button type="button" className="primary__btn secondary__btn" id="follow__btn">Follow</button>
+                        <CheckIfFollowing followingNames={following} profileName={profile.name} />
                     </div>
                 </div>
                 <div className="specificPost__profileInfo__Container">
