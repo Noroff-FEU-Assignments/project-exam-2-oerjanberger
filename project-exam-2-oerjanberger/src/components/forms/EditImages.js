@@ -8,6 +8,7 @@ import { Form } from "react-bootstrap";
 import useAxios from "../hooks/useAxios";
 import { BASE_URL } from "../../constants/Api";
 import FormError from "../common/FormError";
+import { Alert } from "react-bootstrap";
 
 const schema = yup.object().shape({
     banner: yup.string().url("Please add valid url as the banner image"),
@@ -35,7 +36,10 @@ export default function EditImages(props) {
         try {
             await http.put(editImagesUrl, data);
             auth.avatar = data.avatar;
-            navigate(0);
+            setEditImagesError(<Alert variant="success" > Your image was updated</Alert >);
+            setTimeout(() => {
+                navigate(0);
+            }, 1000);
 
         } catch (error) {
             console.log(error);

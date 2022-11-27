@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react"
-import Reactions from "./Reactions"
+import { useState, useEffect } from "react";
+import Reactions from "./Reactions";
 
 export default function DisplayReactions(props) {
-    const [showReactions, setShowReactions] = useState([])
+    const [showReactions, setShowReactions] = useState([]);
 
     useEffect(() => {
-        setShowReactions(props.props)
-    }, [])
+        setShowReactions(props.props);
+    }, []);
 
     if (props.props.length === 0) {
         return (
@@ -22,7 +22,6 @@ export default function DisplayReactions(props) {
         return (
             <>
                 <div className="postCard__reactionsContainer__with__symbols">
-                    <p>Reactions</p>
                     <div className="specificPost_symbolContainer">
                         {showReactions.map(function (reaction) {
                             const { symbol, count, postId } = reaction;
@@ -32,5 +31,5 @@ export default function DisplayReactions(props) {
                 </div>
             </>
         )
-    }
-}
+    };
+};

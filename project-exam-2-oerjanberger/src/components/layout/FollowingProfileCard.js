@@ -5,7 +5,7 @@ import CheckIfFollowing from "../follow/CheckIfFollowing";
 
 
 export default function FollowingProfileCard({ name, avatar, following }) {
-    const avatarAltText = "this is the avatar image of " + name
+    const avatarAltText = "this is the avatar image of " + name;
     return (
         <Card className="profileCard profileCard__following">
             <Link to={`/profiles/${name}`} className="profileCard__container">
@@ -16,9 +16,8 @@ export default function FollowingProfileCard({ name, avatar, following }) {
                 </div>
                 <Card.Body>
                     <div className="profileCard__profile__container">
-                        <div className="profileCard__heading__container">
+                        <div className="profileCard__heading__container ">
                             <Card.Title>{name}</Card.Title>
-
                         </div>
                     </div>
                 </Card.Body>

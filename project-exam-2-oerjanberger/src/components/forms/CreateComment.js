@@ -8,6 +8,7 @@ import { Form } from "react-bootstrap";
 import useAxios from "../hooks/useAxios";
 import { BASE_URL } from "../../constants/Api";
 import FormError from "../common/FormError";
+import { Alert } from "react-bootstrap";
 
 const schema = yup.object().shape({
     body: yup.string().required("Did you forget to write something?"),
@@ -30,7 +31,10 @@ export default function CreateComment() {
 
         try {
             await http.post(commentUrl, data);
-            navigate(0);
+            setCommentError(<Alert variant="success" > Your comment was submitted</Alert >);
+            setTimeout(() => {
+                navigate(0);
+            }, 1000);
         } catch (error) {
             console.log(error);
             setCommentError("We were unfortunately unable to submit your comment");

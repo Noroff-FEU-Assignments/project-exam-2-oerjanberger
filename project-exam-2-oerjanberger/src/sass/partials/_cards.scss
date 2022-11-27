@@ -36,7 +36,7 @@
 
 //Profile card styles
 .profileCard {
-    max-height: 7rem;
+    max-height: 10rem;
     min-width: 320px;
 
     .profileCard__container,
@@ -66,7 +66,7 @@
 
     .profileCard__avatar__border {
         position: relative;
-        top: 27%;
+        top: 50%;
         left: 30%;
         box-shadow: 3px 3px 5px getColour(modalBackgroundColour);
     }
@@ -84,6 +84,10 @@
         position: absolute;
         top: 1rem;
         right: 1rem;
+    }
+
+    .profileCard__heading__container {
+        margin-top: 2rem;
     }
 }
 
@@ -145,5 +149,19 @@
 
     .usersPost__headingContainer {
         width: 100%;
+    }
+
+
+
+    .profileCard {
+        max-height: 7rem;
+
+        .profileCard__heading__container {
+            margin-top: 0px;
+        }
+
+        .profileCard__avatar__border {
+            top: 27%;
+        }
     }
 }

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 
-export default function EmojiTwo() {
+export default function ShowAllEmojis() {
     const [emojis, setEmojis] = useState([]);
     useEffect(() => {
         const omitWhere = { versionAbove: '12.0', category: ['flags', 'symbols', 'travel-places', 'animals-nature'] };

@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { Helmet } from "react-helmet-async";
 import { Container } from "react-bootstrap";
-import Spinner from "react-bootstrap/Spinner";
+import Loading from "../loader/Loading";
 import Alert from "react-bootstrap/Alert";
 import useAxios from "../hooks/useAxios";
 import moment from "moment";
@@ -19,7 +19,8 @@ export default function GetSpecificProfile() {
     const [loading, setLoading] = useState(true);
     const [following, setFollowing] = useState([]);
     const [error, setError] = useState(null);
-    const [imageModalShow, setImageModalShow] = useState(false);
+    const [bannerModalShow, setBannerModalShow] = useState(false);
+    const [avatarModalShow, setAvatarModalShow] = useState(false);
     const [auth] = useContext(AuthContext);
 
     let { name } = useParams();
@@ -31,9 +32,13 @@ export default function GetSpecificProfile() {
 
     useEffect(() => {
         async function getSpecificProfileData() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
             try {
                 const Profile = await http.get(profileUrl);
-                const Posts = await http.get(postsUrl)
+                const Posts = await http.get(postsUrl);
                 const userFollowing = await http.get(followingUrl);
                 const followingData = userFollowing.data.following;
                 let followingNames = [];
@@ -41,26 +46,26 @@ export default function GetSpecificProfile() {
                 followingData.forEach(function (obj) {
                     followingNames.push(obj["name"]);
                 });
-                setFollowing(followingNames)
-                setProfile(Profile.data)
-                setPosts(Posts.data)
+                setFollowing(followingNames);
+                setProfile(Profile.data);
+                setPosts(Posts.data);
             } catch (error) {
                 console.log(error);
-                setError("There seems to be a problem with showing this profile")
+                setError("There seems to be a problem with showing this profile, refresh the page or try again later");
             } finally {
-                setLoading(false)
+                setLoading(false);
             }
         }
-        getSpecificProfileData()
-    }, [])
+        getSpecificProfileData();
+    }, []);
 
     if (loading) {
-        return <Spinner animation="border" variant="secondary" />
-    }
+        return <Loading />
+    };
 
     if (error) {
-        <Alert variant="danger">Unfortunately an error has occurred: {error}</Alert>
-    }
+        return <Alert variant="danger">Unfortunately an error has occurred: {error}</Alert>
+    };
 
     const bannerAltText = `This is the banner image for ${profile.banner}`;
     const avatarAltText = `This is the avatar image for ${profile.avatar}`;
@@ -73,12 +78,12 @@ export default function GetSpecificProfile() {
                     content="This is the profile of"{...profile.name}
                 />;
             </Helmet>
-            <div className="specificPost__bannerContainer">
+            <div className="specificPost__bannerContainer" onClick={() => setBannerModalShow(true)}>
                 <img src={profile.banner === null ? "/images/defaultImages/default_banner_img.jpg" : profile.banner} className="specificProfile__bannerImg" alt={bannerAltText} />
             </div>
             <Container className="main__container specificProfile__page">
                 <div className="specificProfile__profileContainer">
-                    <div className="avatar__img__border profileCard__avatar__border specificProfile__avatar__border" onClick={() => setImageModalShow(true)}>
+                    <div className="avatar__img__border profileCard__avatar__border specificProfile__avatar__border" onClick={() => setAvatarModalShow(true)}>
                         <img src={profile.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : profile.avatar} className="nav__icon avatar__img__small specificProfile__avatar__img" alt={avatarAltText} />
                     </div>
                     <div className="specificPost__headingContainer">
@@ -87,16 +92,19 @@ export default function GetSpecificProfile() {
                     </div>
                 </div>
                 <div className="specificPost__profileInfo__Container">
-                    <div className="profileCard__followersContainer">
-                        <p className="number">{profile._count.followers}</p>
+                    <Link to={`/profiles/${profile.name}/followers`} className="profileCard__followersContainer">
+                        <p className="number">{!profile._count.followers ? 0 : profile._count.followers}</p>
                         <p>Followers</p>
-                    </div>
-                    <div className="profileCard__postsContainer">
-                        <p className="number">{profile._count.posts}</p>
-                        <p>Posts</p>
-                    </div>
+                    </Link>
+                    <Link to={`/profiles/${name}/following`} className="profileCard__postsContainer">
+                        <p className="number">{!profile._count.following ? 0 : profile._count.following}</p>
+                        <p>Following</p>
+                    </Link>
                 </div>
-                <Heading size="2" content="Posts" />
+                <div className="profileCard__postsContainer">
+                    <Heading size="2" content="Posts" />
+                    <p className="number posts__number">{!profile._count.posts ? 0 : profile._count.posts}</p>
+                </div>
                 <Container className="posts__container">
                     {posts.map(function (post) {
                         const { id, title, created, updated, media, body, _count, reactions } = post;
@@ -106,9 +114,14 @@ export default function GetSpecificProfile() {
                 <CreatePostBtn />
             </Container>
             <LargeImage
-                show={imageModalShow}
-                onHide={() => setImageModalShow(false)}
+                show={avatarModalShow}
+                onHide={() => setAvatarModalShow(false)}
                 image={profile.avatar === null ? "/images/defaultImages/default_avatar_img.jpg" : profile.avatar}
+            />
+            <LargeImage
+                show={bannerModalShow}
+                onHide={() => setBannerModalShow(false)}
+                image={profile.banner === null ? "/images/defaultImages/default_banner_img.jpg" : profile.banner}
             />
         </>
     );

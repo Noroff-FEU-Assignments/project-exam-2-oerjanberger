@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Spinner from "react-bootstrap/Spinner";
+import Loading from "../loader/Loading";
 import Alert from "react-bootstrap/Alert";
 import useAxios from "../hooks/useAxios";
 import moment from "moment";
@@ -23,33 +23,37 @@ export default function GetSpecificPost() {
     const [imageModalShow, setImageModalShow] = useState(false);
 
     let { id } = useParams();
-    const postUrl = `social/posts/${id}?_author=true&_comments=true&_reactions=true`
+    const postUrl = `social/posts/${id}?_author=true&_comments=true&_reactions=true`;
 
     const http = useAxios();
 
     useEffect(() => {
         async function getSpecificPostData() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
             try {
                 const response = await http.get(postUrl);
-                setPost(response.data)
-                setComments(response.data.comments)
+                setPost(response.data);
+                setComments(response.data.comments);
             } catch (error) {
                 console.log(error);
-                setError("There seems to be a problem with showing the post")
+                setError("There seems to be a problem with showing the post, refresh the page or try again later");
             } finally {
-                setLoading(false)
-            }
+                setLoading(false);
+            };
         }
-        getSpecificPostData()
-    }, [])
+        getSpecificPostData();
+    }, []);
 
     if (loading) {
-        return <Spinner animation="border" variant="secondary" />
-    }
+        return <Loading />
+    };
 
     if (error) {
-        <Alert variant="danger">Unfortunately an error has occurred: {error}</Alert>
-    }
+        return <Alert variant="danger">{error}</Alert>
+    };
 
     const avatarAltText = `This is the avatar image for ${post.author.avatar}`;
     return (
@@ -98,8 +102,8 @@ export default function GetSpecificPost() {
             <Heading size="3" content="Comments" />
             <Container className="specificPost__commentsContainer">
                 {comments.map(function (comment) {
-                    const { id, body, owner, created } = comment;
-                    return <CommentCard key={id} id={id} body={body} owner={owner} created={moment(created).calendar()} />
+                    const { id, body, owner, created, author } = comment;
+                    return <CommentCard key={id} id={id} body={body} owner={owner} created={moment(created).calendar()} avatar={author.avatar} banner={author.banner} />
                 })}
             </Container>
         </>

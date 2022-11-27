@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 import CheckIfFollowing from "../follow/CheckIfFollowing";
 export default function FollowersProfileCard({ name, avatar, following }) {
-    const avatarAltText = "this is the avatar image of " + name
+    const avatarAltText = "this is the avatar image of " + name;
 
     return (
         <Card className="profileCard profileCard__following">

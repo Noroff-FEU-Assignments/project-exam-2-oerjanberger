@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Heading from "../layout/Heading";
 import DisplayReactions from "../layout/DisplayReactions";
 export default function PostCard({ id, avatar, name, title, created, updated, image, body, reactions, comments }) {
-    const avatarAltText = "This is the avatar image of " + name
+    const avatarAltText = "This is the avatar image of " + name;
 
     return (
         <Card className="postCard">
@@ -37,9 +37,7 @@ export default function PostCard({ id, avatar, name, title, created, updated, im
                         </div>
                     </Link>
                 </div>
-
             </Card.Body>
-
         </Card>
     );
 };

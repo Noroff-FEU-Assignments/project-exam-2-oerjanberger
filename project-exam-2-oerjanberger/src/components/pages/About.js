@@ -3,6 +3,10 @@ import { Helmet } from "react-helmet-async";
 import Heading from "../layout/Heading";
 
 export default function About() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
     return (
         <>
             <Helmet>
@@ -23,6 +27,5 @@ export default function About() {
                 <p className="about__outlined">This is the final project exam for Ørjan Berger as a student at Noroff university.</p>
             </Container>
         </>
-
     );
 };

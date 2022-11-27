@@ -43,7 +43,7 @@ export default function Navigation() {
     };
 
     function cancelLogout() {
-        setModalShow(false)
+        setModalShow(false);
     };
 
     return (

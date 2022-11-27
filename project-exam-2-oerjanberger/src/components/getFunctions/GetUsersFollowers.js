@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import Spinner from "react-bootstrap/Spinner";
+import Loading from "../loader/Loading";
 import Alert from "react-bootstrap/Alert";
 import useAxios from "../hooks/useAxios";
 import FollowersProfileCard from "../layout/FollowersProfileCard";
@@ -14,11 +14,15 @@ export default function GetUsersFollowers() {
 
     const http = useAxios();
     let { name } = useParams();
-    const profileUrl = `social/profiles/${name}?_following=true&_followers=true`
-    const followingUrl = `social/profiles/${name}?_following=true`
+    const profileUrl = `social/profiles/${name}?_following=true&_followers=true`;
+    const followingUrl = `social/profiles/${name}?_following=true`;
 
     useEffect(() => {
         async function getProfileData() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
             try {
                 const response = await http.get(profileUrl);
                 const userFollowing = await http.get(followingUrl);
@@ -29,25 +33,25 @@ export default function GetUsersFollowers() {
                     followingNames.push(obj["name"]);
                 });
 
-                setFollowing(followingNames)
-                setProfiles(response.data.followers)
+                setFollowing(followingNames);
+                setProfiles(response.data.followers);
             } catch (error) {
                 console.log(error);
-                setError(`There seems to be a problem with showing ${name} followers`)
+                setError(`There seems to be a problem with showing ${name} followers, refresh the page or try again later`);
             } finally {
-                setLoading(false)
+                setLoading(false);
             }
         }
-        getProfileData()
-    }, [])
+        getProfileData();
+    }, []);
 
     if (loading) {
-        return <Spinner animation="border" variant="secondary" />
-    }
+        return <Loading />
+    };
 
     if (error) {
-        <Alert variant="danger">Unfortunately an error has occurred: {error}</Alert>
-    }
+        return <Alert variant="danger">{error}</Alert>
+    };
     return (
         <Container className="followingProfiles__container">
             {profiles.map(function (profile) {

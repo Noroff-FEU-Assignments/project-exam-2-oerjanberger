@@ -6,6 +6,10 @@ import RegisterForm from "../forms/RegisterForm";
 
 
 export default function Register() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
     return (
         <>
             <Helmet>

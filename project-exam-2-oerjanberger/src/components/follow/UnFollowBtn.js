@@ -20,9 +20,9 @@ export default function UnFollowBtn(props) {
             console.log(error);
             setError("There seems to be a problem with unfollowing this profile")
         };
-        if (error) {
-            <Alert variant="danger">{error}</Alert>
-        };
+    };
+    if (error) {
+        return <Alert variant="danger">{error}</Alert>
     };
     return (
         <button

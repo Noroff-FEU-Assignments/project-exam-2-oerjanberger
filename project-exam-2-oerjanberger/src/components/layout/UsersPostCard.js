@@ -5,15 +5,14 @@ import { Link } from "react-router-dom";
 import Heading from "../layout/Heading";
 import { MdEdit } from "react-icons/md";
 import EditPostModal from "../modals/EditPostModal";
-
+import DisplayReactions from "./DisplayReactions";
 export default function UsersPostCard({ id, avatar, name, title, created, updated, image, body, reactions, comments }) {
-    const avatarAltText = "This is the avatar image of " + name
+    const avatarAltText = "This is the avatar image of " + name;
     const [modalShow, setModalShow] = useState(false);
     const [postId, setPostId] = useState(null);
     const [postTitle, setPostTitle] = useState(null);
     const [postBody, setPostBody] = useState(null);
     const [postImage, setPostImage] = useState(null);
-
 
     return (
         <Card className="postCard">
@@ -52,14 +51,10 @@ export default function UsersPostCard({ id, avatar, name, title, created, update
                 <Link to={`/post/${id}`}>
                     <Card.Title>{title}</Card.Title>
                     <div className="postCard__textContainer">
-                        <Card.Text>{body}</Card.Text>
-                        <p className="postCard__seeMore">...</p>
+                        <Card.Text>{body && body.length > 100 ? body.substring(0, 100) + "..." : body}</Card.Text>
                     </div>
                     <div className="postCard__interactionContainer">
-                        <div className="postCard__reactionsContainer">
-                            <p className="number">{reactions}</p>
-                            <p>Reactions</p>
-                        </div>
+                        <DisplayReactions props={reactions} />
                         <div className="postCard__commentsContainer">
                             <p className="number">{comments}</p>
                             <p>Comments</p>
@@ -81,5 +76,5 @@ UsersPostCard.propTypes = {
     image: PropTypes.string,
     body: PropTypes.string,
     comments: PropTypes.number.isRequired,
-    reactions: PropTypes.number.isRequired,
+    reactions: PropTypes.array.isRequired,
 };

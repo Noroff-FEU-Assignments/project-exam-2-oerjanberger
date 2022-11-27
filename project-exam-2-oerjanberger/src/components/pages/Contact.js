@@ -4,6 +4,10 @@ import Heading from "../layout/Heading";
 import MailToBtn from "../layout/MailToBtn";
 
 export default function Contact() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
     return (
         <>
             <Helmet>
@@ -19,6 +23,5 @@ export default function Contact() {
                 <MailToBtn mailto="mailto:thisistheemail@email.com" />
             </Container>
         </>
-
     );
 };

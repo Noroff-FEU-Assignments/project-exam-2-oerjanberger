@@ -19,9 +19,9 @@ export default function FollowBtn(props) {
             console.log(error);
             setError("There seems to be a problem with following this profile")
         };
-        if (error) {
-            <Alert variant="danger">{error}</Alert>
-        };
+    };
+    if (error) {
+        return <Alert variant="danger">{error}</Alert>
     };
     return (
         <button

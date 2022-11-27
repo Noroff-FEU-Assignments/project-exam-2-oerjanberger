@@ -7,6 +7,7 @@ import { Form } from "react-bootstrap";
 import axios from "axios";
 import { BASE_URL } from "../../constants/Api";
 import FormError from "../common/FormError";
+import { Alert } from "react-bootstrap";
 
 let emailRegex = new RegExp("[a-z0-9]+@((stud.noroff|noroff)\.no)");
 
@@ -18,21 +19,21 @@ const schema = yup.object().shape({
 
 export default function RegisterForm() {
     const [registerError, setRegisterError] = useState(null);
-
     const navigate = useNavigate();
-
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
     });
 
     async function onSubmit(data) {
-
         const registerUrl = BASE_URL + "social/auth/register";
         setRegisterError(null);
 
         try {
             await axios.post(registerUrl, data);
-            navigate(`/login`, { replace: true });
+            setRegisterError(<Alert variant="success" > Your user was successfully registered </Alert >);
+            setTimeout(() => {
+                navigate(`/login`, { replace: true });
+            }, 1000);
         } catch (error) {
             console.log(error);
             setRegisterError("Unfortunately we were not able to register you as a user, we are working on fixing the error. In the mean time make sure all fields are correct");

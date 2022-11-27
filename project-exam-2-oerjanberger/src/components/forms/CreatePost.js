@@ -7,6 +7,7 @@ import { Form } from "react-bootstrap";
 import useAxios from "../hooks/useAxios";
 import { BASE_URL } from "../../constants/Api";
 import FormError from "../common/FormError";
+import { Alert } from "react-bootstrap";
 
 const schema = yup.object().shape({
     title: yup.string().required("Please add a title to your post"),
@@ -28,13 +29,17 @@ export default function CreatePost() {
 
         try {
             await http.post(createUrl, data);
-            navigate(0);
+            setCreateError(<Alert variant="success" > Post Created</Alert >);
+            setTimeout(() => {
+                navigate(0);
+            }, 1000);
 
         } catch (error) {
             console.log(error);
             setCreateError("We were unable to create your post, please try again later");
         };
     };
+
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)} className="form__createPost">

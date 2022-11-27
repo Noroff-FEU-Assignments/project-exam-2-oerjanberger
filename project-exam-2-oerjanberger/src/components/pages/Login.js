@@ -5,6 +5,10 @@ import PreAuthBackground from "../layout/PreAuthBackground";
 import LoginForm from "../forms/LoginForm";
 
 export default function Login() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
     return (
         <>
             <Helmet>

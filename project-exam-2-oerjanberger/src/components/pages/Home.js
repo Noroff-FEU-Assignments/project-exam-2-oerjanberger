@@ -4,6 +4,10 @@ import Heading from "../layout/Heading";
 import PreAuthBackground from "../layout/PreAuthBackground";
 
 export default function Home() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
     return (
         <>
             <PreAuthBackground image="/images/backgroundImages/IndexPageImage.jpg" />

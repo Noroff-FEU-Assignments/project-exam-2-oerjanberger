@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import Modal from 'react-bootstrap/Modal';
-import EmojiTwo from "../emojis/EmojiTwo";
+import ShowAllEmojis from "../emojis/ShowAllEmojis";
 
 
 export default function EmojiModal(props) {
@@ -15,11 +15,9 @@ export default function EmojiModal(props) {
         >
             <Modal.Body>
                 <div className="Emoji__container" >
-                    <EmojiTwo />
+                    <ShowAllEmojis />
                 </div>
-
             </Modal.Body>
-
         </Modal >
     );
 };

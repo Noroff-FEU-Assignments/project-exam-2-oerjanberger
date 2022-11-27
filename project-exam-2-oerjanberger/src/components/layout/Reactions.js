@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 
-function Reactions({ symbol, count, id }) {
+export default function Reactions({ symbol, count, id }) {
     const navigate = useNavigate();
 
     const http = useAxios();
@@ -23,8 +23,6 @@ function Reactions({ symbol, count, id }) {
         </div>
     )
 }
-
-export default Reactions
 
 Reactions.propTypes = {
     symbol: PropTypes.string.isRequired,

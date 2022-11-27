@@ -109,9 +109,13 @@
     }
 }
 
-
 .specificPost__interactBtn:hover {
     cursor: pointer;
+}
+
+.moreLess__btnContainer {
+    display: flex;
+    justify-content: space-around;
 }
 
 
