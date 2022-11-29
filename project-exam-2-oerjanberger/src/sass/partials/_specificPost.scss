@@ -30,7 +30,6 @@
 .specificPost_symbolContainer {
     display: flex;
     flex-wrap: wrap;
-
     max-width: 50vw;
 }
 
@@ -77,8 +76,14 @@
     justify-content: space-between;
 
     .specificPost__interactBtn {
+        padding: 0.3rem 1.2rem;
+        border-radius: 5px;
         border: none;
         background-color: transparent;
+
+        &:hover {
+            background-color: getColour(inputColour);
+        }
     }
 
     .logo__btn {
@@ -104,6 +109,8 @@
     gap: 1rem;
     margin-bottom: 0.5rem;
 }
+
+
 
 @media (min-width: 768px) {
     .specificPost__dateContainer {
