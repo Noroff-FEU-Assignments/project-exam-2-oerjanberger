@@ -30,11 +30,19 @@
 .specificPost_symbolContainer {
     display: flex;
     flex-wrap: wrap;
+    gap: 0.5rem;
+    row-gap: 1.2rem;
     max-width: 50vw;
 }
 
 .specificPost__numberReactionsContainer {
     margin-top: -40px;
+
+    &:hover .emoji__btn {
+        cursor: pointer;
+        background-color: getColour(backgroundColour);
+        border-radius: 5px 5px 5px 5px;
+    }
 
     .reaction__number {
         position: relative;
@@ -42,13 +50,9 @@
     }
 
     .emoji__btn {
-        font-size: 1rem;
+        font-size: 1.3rem;
         height: 2rem;
         width: 2.5rem;
-
-        &:hover {
-            cursor: pointer;
-        }
     }
 }
 
