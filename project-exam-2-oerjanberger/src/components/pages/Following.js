@@ -20,7 +20,6 @@ export default function Following() {
                 <div className="profileList__btnContainer">
                     <Link to={"/profileList"}><button type="button" className="primary__btn">Profile list</button></Link>
                 </div>
-
             </Container>
         </>
     );
