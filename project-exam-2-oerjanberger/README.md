@@ -1,8 +1,8 @@
 # Project Exam 2 RE:ACT
 
-![image](./public/images/defaultImages/default_avatar_img.jpg)
+![image](./public/images/backgroundImages/IndexPageImage.jpg)
 
-This is the final project exam for Ørjan Grøttvedt Berger while studying front-end development at Noroff. The exam is made to be a social media website that a student or teacher with a noroff email address can register a user and login to interact with the rest of the students. 
+This is the final project exam for Ørjan Grøttvedt Berger while studying front-end development at Noroff. The exam is made to be a social media website that a student or teacher with a noroff email address can register a user and login to interact with the rest of the students. The image selected for this ReadMe file is only used because we were not allowed to change any other parts of the repo then the ReadMe file.
 
 ## Description
 For the brief I got information that an existing Social Media company has approached me to create a brand new front end for their application. While they have a list of required features that I have listed below as user stories, the design and user experience had not been specified. 
