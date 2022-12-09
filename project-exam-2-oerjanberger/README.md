@@ -1,6 +1,12 @@
 # Project Exam 2 RE:ACT
-## Description
+
+![image](./public/images/logo/Logo_main.png)
+
 This is the final project exam for Ørjan Grøttvedt Berger while studying front-end development at Noroff. The exam is made to be a social media website that a student or teacher with a noroff email address can register a user and login to interact with the rest of the students. 
+
+## Description
+For the brief I got information that an existing Social Media company has approached me to create a brand new front end for their application. While they have a list of required features that I have listed below as user stories, the design and user experience had not been specified. 
+
 This is the user stories that is the base for what functionality the website provides:
 
 - A user with a stud.noroff.no email may `register`
@@ -17,16 +23,103 @@ This is the user stories that is the base for what functionality the website pro
 - A registered user may create a `Comment` on any `Post`
 - A registered user may `react` to any `Post` with an `emoji`
 - A registered user may `follow` and `unfollow` another Profile
-## How to setup the project locally
 
-Open a new terminal and change directory to the correct folder `cd project-exam-2-oerjanberger`. 
+For this project I had to work with Noroff's own Social Media API. I had to make the logo and come up with a name for the Social media website as well.
 
-When the correct directory is chosen you can `npm run start`
+When a new user opens the website it will open on the Home page.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Home Page
+On the Home page a user may select to register, for a new user, or Login for an existing. The footer will also take the user to a About page or a Contact Page
 
-The page will reload when you make changes.\
+### Register Page
+Has a form where a new user can register their noroff.no or stud.noroff.no email, a username and password. Submitting this form will take the user to the Login page.
+
+### Login Page
+Has a form that logs in a user if the email and password is correct or registered. Submitting the a form with correct data will save an Auth user to the local storage and navigate the user to the Post List page. The Nav will now look different and have more pages to navigate to, these being Post List, Profile List, Users Profile Page and a logout button. The logo will now navigate a user to the Post list page when pressed.
+
+### Log Out Button
+In the nav there is a logout icon that when clicked by a user will show a modal where a user can confirm or cancel the log out. Logging out will set the value of the Auth key in local storage to null.
+
+### Create Post Button
+When a user is logged in there is a create post button in the bottom right corner. This button is available on the next pages that will be mentioned
+### Post List Page
+On this page a logged in user can view all posts that is posted to the social media API. There is show more buttons at the bottom of the page if there is more then a 100 post. Clicking this will scroll the window to the top and show the next 100 posts. If there is no more posts a message will be shown. There will also be a show previous button that lets the user navigate to the posts they have passed when clicking the show more button. 
+
+If a post has reactions, emojis, on it a logged in user can click the emojis and increase the count of this emoji. If no emojis is added already the post will show 0 reactions. The post cards also has a limit of characters on the body text that, if reached will show as three dots ... . To see the entire body text a user can click on the post to navigate to the specific post page
+
+A user may also click on the Avatar image or name of the Author to navigate to the specific profile page.
+
+### Specific Post Page
+On this page the user is able to add a comment on the post and react to the post with a large amount of emojis. The body text will also be shown with the full amount of characters.
+Clicking on the image of the post will display it in a modal.
+
+### Profile List Page
+On this page a user can view all profiles that is registered on the social media API. A user may follow or unfollow a user by clicking the button. There is show more buttons at the bottom of the page if there is more then a 100 profiles. Clicking this will scroll the window to the top and show the next 100 profiles. If there is no more profiles a message will be shown. There will also be a show previous button that lets the user navigate to the profiles they have passed when clicking the show more button.
+
+On the profile card it will show the avatar, banner and username of the profile. The profile card will also display the number of followers and posts that this profile has
+A user may click on the profile card and be navigated to the specific profile page
+
+### Specific Profile Page
+On this page a user can view the profile of another user. A user can click the avatar or banner image and have them shown in full size through a modal. The page will show how many followers and how many profiles this specific user is following. Pressing these buttons will take the user to a following and a followers page. A user is also able to follow or unfollow the profile from this page.
+
+On the page the number of posts will be displayed and a user is able to scroll through the posts that specific profile has made.
+
+### Following Page
+On this page a user can see what profiles a certain profile is following. The following status of the logged in user will be shown on the buttons so the user can follow and unfollow profiles here as well. The following card will show the avatar and username of a profile.
+
+### Followers Page
+On this page a user can see all profiles that is following a certain profile. The following status of the logged in user will be shown on the buttons so the user can follow and unfollow profiles here as well. The following card will show the avatar and username of a profile.
+
+### User specific Page
+A user may navigate to this page by selecting the avatar icon in the navigation. This page is similar to the specific profile page but with the added functionality of being able to edit the Avatar and Banner images of the user. These can be updated using urls directly to an image. 
+It is also here that a user can edit and delete a Post they have created.
+
+### About Page
+A short description of the company and what the website is
+### Contact page
+Contact page to report errors or give feedback. Right now it is a fictitious email.
+
+## Built With
+
+- [React.js](https://reactjs.org/)
+- [Bootstrap](https://getbootstrap.com)
+- [React Bootstrap](https://react-bootstrap.github.io/)
+- [Sass](https://sass-lang.com/)
+- JavaScript
+- [Axios](https://axios-http.com/docs/intro)
+- [React router](https://reactrouter.com/en/main)
+- [Yup](https://github.com/jquense/yup)
+- [react hook form](https://react-hook-form.com/)
+
+## Getting Started
+
+### Installing
+
+1. Clone the repo:
+
+```bash
+git clone git@github.com:Noroff-FEU-Assignments/project-exam-2-oerjanberger.git
+```
+
+2. Install the dependencies:
+
+```
+npm install react-bootstrap bootstrap node-sass axios react-router-dom react-hook-form yup @hookform/resolvers unicode-emoji
+```
+
+### Running
+
+To run the app, run the following commands in the terminal:
+
+```bash
+cd project-exam-2-oerjanberger
+```
+
+```bash
+npm run start
+```
+
+The page will reload when you make changes.
 You may also see any lint errors in the console.
 
 ### How to login
@@ -34,8 +127,29 @@ When the project is open in [http://localhost:3000](http://localhost:3000), you 
 
 ### Adding images
 When you add images to a post or if you are changing your banner/avatar image it is important that you us the full image url. Otherwise the image will not be be show. For example you can use [unsplash](https://unsplash.com) to do this. Find the image you want that is free to use. Right click it and select `copy image address`. Paste this in the url field of the form and submit it.
+## Contributing
 
-## Report
+Make sure to open a pull request so code can be reviewed.
+
+## Contact
+
+[My LinkedIn page](https://www.linkedin.com/in/%C3%B8rjan-berger-80a05889/)
+
+## License
+
+The API used for this is Noroff's
+
+## Acknowledgments
+
+- [Images for style tile and wireframes](https://unsplash.com)
+- [Icons](https://react-icons.github.io/react-icons/)
+- [Fonts](https://fonts.google.com/)
+- [NPM package for Emojis](https://www.npmjs.com/package/unicode-emoji)
+- [Mail to solution](https://stackoverflow.com/questions/63782544/react-open-mailto-e-mail-client-onclick-with-body-from-textarea)
+- [onkeydown to solution](https://reactgo.com/react-trigger-button-click/)
+- [useLocalStorage hook](https://usehooks.com/useLocalStorage/)
+
+## My Report as required in Project Exam 2 delivery
 Following is the full report for the project exam 2. In the report I will take you through all the stages I went trough these seven weeks to make my Project Exam 2. I will take you through my thought processes, decision making, and struggles. I have broken the main section up in smaller pieces where I will take you trough the planning, design and coding. 
 ### Planning and Research
 #### Planning
@@ -105,25 +219,6 @@ I am happy with the look and feel of the page. I feel I have completed the assig
 -	I would have liked much more time working with this new Noroff API before getting it thrown at us in our final project, but I appreciate the experience of working in an environment and with tools that is ever changing. 
 -	There should be default tags in the API that could be toggled for a post. Similar to discord forum.
 -	I wish there were emoji symbols added to the API. Then we could us show those in our projects and they could be toggled to true or false. Having all students that is creating a social media website choose which emojis their projects have and that that everyone have to take those into account on their own website is in my opinion not good practice.
-
-
-
-#### Resources
-
-[Images for style tile and wireframes](https://unsplash.com)
-[Icons](https://react-icons.github.io/react-icons/)
-[Fonts](https://fonts.google.com/)
-[NPM package for Emojis](https://www.npmjs.com/package/unicode-emoji)
-[Mail to solution](https://stackoverflow.com/questions/63782544/react-open-mailto-e-mail-client-onclick-with-body-from-textarea)
-[onkeydown to solution](https://reactgo.com/react-trigger-button-click/)
-[useLocalStorage hook](https://usehooks.com/useLocalStorage/)
-[react bootstrap](https://react-bootstrap.github.io/)
-[react hook form](https://react-hook-form.com/)
-[yup validation](https://github.com/jquense/yup)
-[axios](https://github.com/axios/axios)
-
-
-
 
 
 
