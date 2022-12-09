@@ -1,6 +1,6 @@
 # Project Exam 2 RE:ACT
 
-![image](images/logo/Logo_main.png)
+![image](/images/logo/Logo_main.png)
 
 This is the final project exam for Ørjan Grøttvedt Berger while studying front-end development at Noroff. The exam is made to be a social media website that a student or teacher with a noroff email address can register a user and login to interact with the rest of the students. 
 
